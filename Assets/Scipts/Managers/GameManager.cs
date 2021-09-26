@@ -6,15 +6,22 @@ public class GameManager : MonoBehaviour
 {
     //The only one with MonoBehaviour
 
-    // Start is called before the first frame update
+    public GameObject PlayerInstance;
+
+    private PlayerMovement playerMovement;
+    private StateMachine<GameManager> stateMachine;
+
     void Start()
     {
-        
+        stateMachine = new StateMachine<GameManager>(this);
+
+        playerMovement = new PlayerMovement(PlayerInstance, transform);
+        playerMovement.OnEnter();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        playerMovement.OnUpdate();
     }
 }
