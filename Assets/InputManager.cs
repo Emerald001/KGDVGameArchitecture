@@ -1,54 +1,55 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager
 {
-    public static KeyCode GetKeyForAction(KeyBindingActions _action)
+    private KeyBindings keyBindings;
+    
+    public KeyCode GetKeyForAction(KeyBindingActions _action)
     {
-        foreach (var keyBindingsCheck in KeyBindings.KeybindingCheck) 
+        foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
-            if (keyBindingsCheck.keybindingAction == _action)
+            if (keyBindingsCheck.keyBindingAction == _action)
             {
-                return keyBindingsCheck.Value;
+                return keyBindingsCheck.keyCode;
             }
         }
         
         return KeyCode.None;
     }
 
-    public static bool GetKeyDown(KeyBindingActions _key)
+    public bool GetKeyDown(KeyBindingActions _key)
     {
-        foreach (var keyBindingsCheck in KeyBindings.keyBindingChecks) 
+        foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
-            if (keyBindingsCheck.Key == _key)
+            if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKeyDown(keyBindingsCheck.Value);
+                return Input.GetKeyDown(keyBindingsCheck.keyCode);
             }
         }
         
         return false;
     }
     
-    public static bool GetKey(KeyBindingActions _key)
+    public bool GetKey(KeyBindingActions _key)
     {
-        foreach (var keyBindingsCheck in KeyBindings.keyBindingChecks) 
+        foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
-            if (keyBindingsCheck.Key == _key)
+            if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKey(keyBindingsCheck.Value);
+                return Input.GetKey(keyBindingsCheck.keyCode);
             }
         }
         
         return false;
     }
     
-    public static bool GetKeyUp(KeyBindingActions _key)
+    public bool GetKeyUp(KeyBindingActions _key)
     {
-        foreach (var keyBindingsCheck in KeyBindings.KeybindingCheck) 
+        foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
-            if (keyBindingsCheck.Key == _key)
+            if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKeyUp(keyBindingsCheck.Value);
+                return Input.GetKeyUp(keyBindingsCheck.keyCode);
             }
         }
         
