@@ -2,45 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler<T>
 {
-
     [System.Serializable]
     public class Pool
     {
         public string tag;
-        public GameObject prefab;
+        public T prefab;
         public int totalSize;
-
     }
-
-    #region Sjaak de Singleton
-    public static ObjectPooler Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    #endregion 
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<T>> poolDictionary;
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnStart()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        poolDictionary = new Dictionary<string, Queue<T>>();
 
         foreach(Pool pool in pools)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+            Queue<T> objectPool = new Queue<T>();
 
             for (int i = 0; i < pool.totalSize; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false);
+                T obj = new prefab;
                 objectPool.Enqueue(obj);
             }
 
@@ -48,14 +35,14 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFromPool(string _tag, Vector3 _position, Quaternion _rotation)
+    public T SpawnFromPool(string _tag, Vector3 _position, Quaternion _rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
+        if (!poolDictionary.ContainsKey(_tag))
         {
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        T objectToSpawn = poolDictionary[_tag].Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = _position;
@@ -68,7 +55,7 @@ public class ObjectPooler : MonoBehaviour
             pooledObject.OnObjectSpawn();
         }
 
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        poolDictionary[_tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
