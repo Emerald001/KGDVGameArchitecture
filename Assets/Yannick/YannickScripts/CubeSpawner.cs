@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeSpawner : MonoBehaviour
+public class CubeSpawner : MonoBehaviour, IPooledObject
 {
-    void FixedUpdate()
+    public GameObject cubePrefab;
+
+    public void OnObjectSpawn()
     {
         ObjectPooler.Instance.SpawnFromPool("Cube", transform.position, Quaternion.identity);
     }

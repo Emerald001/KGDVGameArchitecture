@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour, IPooledObject
+public class Cube : MonoBehaviour
 {
 
-    public float upForce  = 1f;
-    public float sideFore = 1f;
+    public float upForce = 1f;
+    public float sideForce = 1f;
 
-
-    public void OnObjectSpawn()
+    // Start is called before the first frame update
+    void Start()
     {
 
-        float xForce = Random.Range(-sideFore, sideFore);
-        float yForce = Random.Range(upForce / 2f, upForce);
-        float zForce = Random.Range(-sideFore, sideFore);
+        float xForce = Random.Range(-sideForce, sideForce);
+        float yForce = Random.Range(-upForce / 2f, upForce);
+        float zForce = Random.Range(-sideForce, sideForce);
 
-        Vector3 theForce = new Vector3(xForce, yForce, zForce);
 
-        GetComponent<Rigidbody>().velocity = theForce;
+        Vector3 force = new Vector3(xForce, yForce, zForce);
+
+        GetComponent<Rigidbody>().velocity = force;
     }
+    
+
 }
