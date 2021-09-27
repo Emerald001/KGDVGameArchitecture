@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class InputManager
 {
+    //Singleton (I think?)
+    public static InputManager instance { get; } = new InputManager();
+    private InputManager() { }
+    
     private KeyBindings keyBindings;
     
     public KeyCode GetKeyForAction(KeyBindingActions _action)
