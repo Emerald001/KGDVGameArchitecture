@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94a73d43-d5a8-432d-abb9-71e8745c4f3b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scipts/KeyBindings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/KeyBindings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Managers/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Managers/InputManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,11 @@
       <option value="$PROJECT_DIR$/Assets/Scenes/InputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/InputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Keybindings.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Singleton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Managers/Singleton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/KeyBindings.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Managers/InputManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiYxzf4lLdbSW5g7OgP6sBw5pE" />

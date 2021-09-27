@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private StateMachine<GameManager> stateMachine;
-
-    void Start()
+    
+    private void Start()
     {
         stateMachine = new StateMachine<GameManager>(this);
 
@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour
         playerMovement.OnEnter();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         playerMovement.OnUpdate();
     }

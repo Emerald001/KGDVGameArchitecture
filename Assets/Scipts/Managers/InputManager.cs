@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class InputManager
 {
-    private KeyBindings keyBindings;
+    //Singleton without MonoBehaviour
+    public static InputManager instance { get; } = new InputManager();
+    private InputManager() { }
+    
+    private readonly KeyBindings keyBindings = Resources.Load("Keybindings/PlayerKeybindings") as KeyBindings;
     
     public KeyCode GetKeyForAction(KeyBindingActions _action)
     {
@@ -17,7 +21,7 @@ public class InputManager
         return KeyCode.None;
     }
 
-    public bool GetKeyDown(KeyBindingActions _key)
+    public bool GetButtonDown(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
@@ -30,7 +34,7 @@ public class InputManager
         return false;
     }
     
-    public bool GetKey(KeyBindingActions _key)
+    public bool GetButton(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
@@ -43,7 +47,7 @@ public class InputManager
         return false;
     }
     
-    public bool GetKeyUp(KeyBindingActions _key)
+    public bool GetButtonUp(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
