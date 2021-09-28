@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputManager
@@ -21,43 +22,43 @@ public class InputManager
         return KeyCode.None;
     }
 
-    public bool GetButtonDown(KeyBindingActions _key)
+    public int GetButtonDown(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKeyDown(keyBindingsCheck.keyCode);
+                return Convert.ToInt32(Input.GetKeyDown(keyBindingsCheck.keyCode));
             }
         }
         
-        return false;
+        return 0;
     }
     
-    public bool GetButton(KeyBindingActions _key)
+    public int GetButton(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKey(keyBindingsCheck.keyCode);
+                return Convert.ToInt32(Input.GetKey(keyBindingsCheck.keyCode));
             }
         }
         
-        return false;
+        return 0;
     }
     
-    public bool GetButtonUp(KeyBindingActions _key)
+    public int GetButtonUp(KeyBindingActions _key)
     {
         foreach (var keyBindingsCheck in keyBindings.keybindingChecks) 
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return Input.GetKeyUp(keyBindingsCheck.keyCode);
+                return Convert.ToInt32(Input.GetKeyUp(keyBindingsCheck.keyCode));
             }
         }
         
-        return false;
+        return 0;
     }
 }
 
