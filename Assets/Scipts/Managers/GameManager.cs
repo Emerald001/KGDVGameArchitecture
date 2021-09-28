@@ -6,19 +6,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlayerInstance;
 
-    private PlayerMovement playerMovement;
+    private Player player;
     private StateMachine<GameManager> stateMachine;
     
     private void Start()
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        playerMovement = new PlayerMovement(PlayerInstance, transform);
-        playerMovement.OnEnter();
+        player = new Player(this, PlayerInstance, transform);
+        player.OnEnter();
     }
 
     private void Update()
     {
-        playerMovement.OnUpdate();
+        player.OnUpdate();
     }
 }

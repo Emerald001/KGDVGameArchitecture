@@ -6,6 +6,12 @@ namespace Interfaces
 {
     public interface IDamagable
     {
-        void TakeDamage(float damage);
+        public void TakeDamage(float _damage);
     }
+
+    public interface IPhysicsComponent 
+    {
+        public void ScanSurroundings();
+    }
+
 }
