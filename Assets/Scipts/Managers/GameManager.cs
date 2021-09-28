@@ -4,16 +4,20 @@ public class GameManager : MonoBehaviour
 {
     //The only one with MonoBehaviour
 
-    public GameObject PlayerInstance;
-
+    [Header("PlayerSettings")]
+    public GameObject playerInstance;
+    public Camera playerCam;
+    public float playerSpeed;
     private Player player;
+
+
     private StateMachine<GameManager> stateMachine;
     
     private void Start()
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        player = new Player(this, PlayerInstance, transform);
+        player = new Player(playerInstance, playerCam, transform, playerSpeed);
         player.OnEnter();
     }
 

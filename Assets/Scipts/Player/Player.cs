@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Player
 {
-    public GameManager owner;
-
     private GameObject player;
+    private Camera playerCam;
     private PlayerMovement playerMovement;
+    private CameraFollow cameraFollow;
     private Transform spawnpoint;
 
-    public Player(GameManager _owner, GameObject _player, Transform _SpawnPoint)
+    //player Settings
+    private float speed;
+
+    public Player( GameObject _player, Camera _playerCam, Transform _spawnPoint, float _speed)
     {
-        this.owner = _owner;
+        this.playerCam = _playerCam;
         this.player = _player;
-        this.spawnpoint = _SpawnPoint;
+        this.spawnpoint = _spawnPoint;
+        this.speed = _speed;
     }
 
     public void OnEnter()
     {
-        playerMovement = new PlayerMovement(owner, GameObject.Instantiate(player, spawnpoint));
-
+        playerMovement = new PlayerMovement(GameObject.Instantiate(player, spawnpoint), playerCam, speed);
         playerMovement.OnEnter();
     }
 

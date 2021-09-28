@@ -5,42 +5,43 @@ using Interfaces;
 
 public class PlayerMovement : IPhysicsComponent
 {
-    private GameManager owner;
-
     private GameObject player;
-    private SphereCollider playerCollider;
+    private SphereCollider playerCollider = new SphereCollider();
+    private Camera playerCam;
+    private CameraFollow cameraFollow;
 
     public float speed = .2f;
 
-    public PlayerMovement(GameManager _owner, GameObject _newPlayer)
+    public PlayerMovement( GameObject _newPlayer, Camera _playerCam, float _speed)
     {
-        this.owner = _owner;
         this.player = _newPlayer;
+        this.speed = _speed;
+        this.playerCam = _playerCam;
     }
 
     public void OnEnter()
     {
-        playerCollider = new SphereCollider();
-        playerCollider.transform.position = player.transform.position;
-        playerCollider.transform.parent = player.transform;
-    }
+        playerCollider = player.AddComponent(typeof(SphereCollider)) as SphereCollider;
+        playerCollider.radius = 1;
+        playerCollider.center = player.transform.position;
 
-    public void OnExit()
-    {
-
+        cameraFollow = new CameraFollow(playerCam, player);
+        cameraFollow.OnEnter();
     }
 
     public void OnUpdate()
     {
-        player.transform.position = new Vector3();
+        player.transform.position += Move();
         ScanSurroundings();
+
+        cameraFollow.OnUpdate();
     }
 
     private Vector3 Move()
     {
         var input = InputManager.instance;
 
-        return new Vector3((input.GetButtonDown(KeyBindingActions.Left) - input.GetButtonDown(KeyBindingActions.Right)) * speed, 0 , (input.GetButtonDown(KeyBindingActions.Up) - input.GetButtonDown(KeyBindingActions.Down)) * speed);
+        return new Vector3((input.GetButton(KeyBindingActions.Left) - input.GetButton(KeyBindingActions.Right)), 0 , (input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down))) * speed * Time.deltaTime;
     }
 
     public void ScanSurroundings()
@@ -51,6 +52,10 @@ public class PlayerMovement : IPhysicsComponent
         for (var i = 0; i < num; i++)
         {
             var t = overlaps[i].transform;
+            if (t == null)
+            {
+                continue;
+            }
             if (!Physics.ComputePenetration(playerCollider, player.transform.position, player.transform.rotation, overlaps[i], t.position, t.rotation, out var dir, out var dist))
             {
                 continue;
