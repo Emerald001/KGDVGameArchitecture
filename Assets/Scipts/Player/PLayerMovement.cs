@@ -9,6 +9,7 @@ public class PlayerMovement : IPhysicsComponent
     private SphereCollider playerCollider = new SphereCollider();
     private Camera playerCam;
     private CameraFollow cameraFollow;
+    private LayerMask collidingLayer;
 
     public float speed = .2f;
 
@@ -41,13 +42,13 @@ public class PlayerMovement : IPhysicsComponent
     {
         var input = InputManager.instance;
 
-        return new Vector3(input.GetButton(KeyBindingActions.Left) - input.GetButton(KeyBindingActions.Right), 0 , input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down)) * (speed * Time.deltaTime);
+        return new Vector3(input.GetButton(KeyBindingActions.Right) - input.GetButton(KeyBindingActions.Left), input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down), 0) * (speed * Time.deltaTime);
     }
 
     public void ScanSurroundings()
     {
         var overlaps = new Collider[10];
-        var num = Physics.OverlapSphereNonAlloc(player.transform.TransformPoint(player.transform.position), 1, overlaps);
+        var num = Physics.OverlapSphereNonAlloc(player.transform.TransformPoint(player.transform.position), 1, overlaps, collidingLayer);
 
         for (var i = 0; i < num; i++)
         {
