@@ -60,6 +60,11 @@ public class InputManager
         
         return 0;
     }
+
+    public Vector3 GetMousePosition()
+    {
+        return Input.mousePosition;
+    }
 }
 
 public enum KeyBindingActions

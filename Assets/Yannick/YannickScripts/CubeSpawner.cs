@@ -7,3 +7,4 @@ public class CubeSpawner : MonoBehaviour
         //ObjectPooler.instance.SpawnFromPool("Cube", transform.position, Quaternion.identity);
     }
 }
+
