@@ -11,7 +11,13 @@ public class LevelGenerator : MonoBehaviour
         public Vector2 dir;
     }
 
-    private enum GridType
+    public struct CellData
+    {
+        public Vector2 pos;
+        public GridType type;
+    }
+
+    public enum GridType
     {
         Empty,
         Floor,
