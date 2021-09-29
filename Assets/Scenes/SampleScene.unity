@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 500229478}
   - component: {fileID: 500229477}
+  - component: {fileID: 500229481}
+  - component: {fileID: 500229479}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -167,6 +169,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!66 &500229479
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500229476}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 790341829}
+    m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &500229481
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500229476}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &790341825
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +225,7 @@ GameObject:
   - component: {fileID: 790341826}
   - component: {fileID: 790341828}
   - component: {fileID: 790341827}
+  - component: {fileID: 790341829}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -285,6 +333,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &790341829
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790341825}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1041772890
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +492,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -471,7 +535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1755180830}
   - component: {fileID: 1755180831}
-  - component: {fileID: 1755180832}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -508,15 +571,7 @@ MonoBehaviour:
   playerInstance: {fileID: 1426658795142599660, guid: 09d1ebd0582ed8b40845ec554729bd1d, type: 3}
   playerCam: {fileID: 1426094735}
   playerSpeed: 5
---- !u!114 &1755180832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755180829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1663fc9f10883428a5759d1f22747b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  size: {x: 50, y: 50}
+  tilemap: {fileID: 790341828}
+  ground: {fileID: 11400000, guid: 3acfe9f4489ef124cbfe2774027c6bf5, type: 2}
+  wall: {fileID: 11400000, guid: 711b0f1dbff59c04b82f5d6ea3d5dfc4, type: 2}
