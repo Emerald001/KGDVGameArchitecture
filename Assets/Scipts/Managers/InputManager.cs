@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputManager
@@ -27,7 +28,7 @@ public class InputManager
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return System.Convert.ToInt32(Input.GetKeyDown(keyBindingsCheck.keyCode));
+                return Convert.ToInt32(Input.GetKeyDown(keyBindingsCheck.keyCode));
             }
         }
         
@@ -40,7 +41,7 @@ public class InputManager
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return System.Convert.ToInt32(Input.GetKey(keyBindingsCheck.keyCode));
+                return Convert.ToInt32(Input.GetKey(keyBindingsCheck.keyCode));
             }
         }
         
@@ -53,7 +54,7 @@ public class InputManager
         {
             if (keyBindingsCheck.keyBindingAction == _key)
             {
-                return System.Convert.ToInt32(Input.GetKeyUp(keyBindingsCheck.keyCode));
+                return Convert.ToInt32(Input.GetKeyUp(keyBindingsCheck.keyCode));
             }
         }
         
