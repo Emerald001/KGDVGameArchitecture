@@ -18,8 +18,7 @@ public class CameraFollow
     // Start is called before the first frame update
     public void OnEnter()
     {
-        offset = new Vector3(0, 5, -10);
-        playerCam.transform.rotation = Quaternion.Euler(15, 0, 0);
+        offset = new Vector3(0, 0, -10);
     }
 
     // Update is called once per frame

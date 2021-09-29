@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     [Header("PlayerSettings")]
     public GameObject playerInstance;
     public Camera playerCam;
+    public Vector3 spawnpoint;
     public float playerSpeed;
+
     private Player player;
 
     [Header("GenerationSettings")] 
@@ -25,16 +27,21 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        player = new Player(playerInstance, playerCam, transform, playerSpeed);
-        player.OnEnter();
-
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
+
+        player = new Player(playerInstance, playerCam, transform, playerSpeed);
+        player.OnEnter();
     }
 
     private void Update()
     {
         player.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        player.OnFixedUpdate();
     }
 }

@@ -7,7 +7,6 @@ public class Player
     private GameObject player;
     private Camera playerCam;
     private PlayerMovement playerMovement;
-    private CameraFollow cameraFollow;
     private Transform spawnpoint;
 
     //player Settings
@@ -30,5 +29,9 @@ public class Player
     public void OnUpdate() 
     {
         playerMovement.OnUpdate();
+    }
+    public void OnFixedUpdate() 
+    {
+        playerMovement.OnFixedUpdate();
     }
 }

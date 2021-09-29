@@ -11,7 +11,7 @@ namespace Interfaces
 
     public interface IPhysicsComponent 
     {
-        public void ScanSurroundings();
+
     }
 
 }
