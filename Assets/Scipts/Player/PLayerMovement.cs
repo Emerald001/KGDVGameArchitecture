@@ -41,7 +41,7 @@ public class PlayerMovement : IPhysicsComponent
     {
         var input = InputManager.instance;
 
-        return new Vector3((input.GetButton(KeyBindingActions.Left) - input.GetButton(KeyBindingActions.Right)), 0 , (input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down))) * speed * Time.deltaTime;
+        return new Vector3(input.GetButton(KeyBindingActions.Left) - input.GetButton(KeyBindingActions.Right), 0 , input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down)) * (speed * Time.deltaTime);
     }
 
     public void ScanSurroundings()
