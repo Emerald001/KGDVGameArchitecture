@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tiles/ground.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tiles/ground.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tiles/wall.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tiles/wall.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/LevelGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/LevelGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Player/PLayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Player/PLayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Generation/TilemapGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Generation/TilemapGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +39,13 @@
       <option value="$PROJECT_DIR$/Assets/Scipts/Singleton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Managers/Singleton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/KeyBindings.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Managers/InputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Yannick/YannickScripts/CubeSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Player/PLayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/LevelGenerator.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Generation/TilemapGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiYxzf4lLdbSW5g7OgP6sBw5pE" />
@@ -96,6 +96,7 @@
       <workItem from="1632749913138" duration="1222000" />
       <workItem from="1632822935675" duration="170000" />
       <workItem from="1632920175180" duration="1136000" />
+      <workItem from="1632921378510" duration="3089000" />
     </task>
     <servers />
   </component>

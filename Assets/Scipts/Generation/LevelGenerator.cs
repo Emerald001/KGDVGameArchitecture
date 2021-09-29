@@ -1,20 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-//MonoBehaviour for testing only! Start and OnDrawGizmos are the only functions that use it
-public class LevelGenerator : MonoBehaviour
+public class LevelGenerator
 {
     private struct Walker
     {
         public Vector2 pos;
         public Vector2 dir;
-    }
-
-    public struct CellData
-    {
-        public Vector2 pos;
-        public GridType type;
     }
 
     public enum GridType
@@ -24,7 +18,7 @@ public class LevelGenerator : MonoBehaviour
         Wall,
     }
 
-    private Vector2Int size = Vector2Int.one * 50;
+    private Vector2Int size;
 
     private GridType[,] grid;
     private List<Walker> walkers = new List<Walker>();
@@ -36,8 +30,13 @@ public class LevelGenerator : MonoBehaviour
     private int maxWalkers = 10;
 
     private float fillPercent = 0.2f;
+    
+    public LevelGenerator(Vector2Int _size)
+    {
+        size = _size;
+    }
 
-    private void Start()
+    public void OnEnter()
     {
         Setup();
         MoveWalkers();
@@ -183,8 +182,33 @@ public class LevelGenerator : MonoBehaviour
             _ => Vector2.right
         };
     }
+    
+    public void SetTilemap(Tilemap _tilemap, Tile _ground, Tile _wall)
+    {
+        for (var x = 0; x < size.x; x++)
+        {
+            for (var y = 0; y < size.y; y++)
+            {
+                var value = grid[x, y];
+                
+                var tile = value switch
+                {
+                    GridType.Empty => _wall,
+                    GridType.Floor => _ground,
+                    GridType.Wall => _wall,
+                    _ => null
+                };
 
-    private void OnDrawGizmos()
+                var pos = new Vector3(-size.x * 0.5f + x, -size.y * 0.5f + y, 0);
+
+                var tilePos = _tilemap.WorldToCell(pos);
+                
+                _tilemap.SetTile(tilePos, tile);
+            }
+        }
+    }
+
+    public void OnDrawGizmos()
     {
         if (grid == null) return;
 
