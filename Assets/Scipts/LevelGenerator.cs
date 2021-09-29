@@ -23,19 +23,20 @@ public class LevelGenerator : MonoBehaviour
     private GridType[,] grid;
     private List<Walker> walkers = new List<Walker>();
 
-    private float walkerDirectionChangeChance = 0.5f;
+    private float walkerDirectionChangeChance = 0.45f;
     private float walkerSpawnChance = 0.05f;
     private float walkerDestroyChance = 0.05f;
 
-    private int maxWalkers = 16;
+    private int maxWalkers = 10;
 
-    private float fillPercent = 0.3f;
+    private float fillPercent = 0.2f;
 
     private void Start()
     {
         Setup();
         MoveWalkers();
         CreateWalls();
+        RemoveIsolatedWalls();
     }
 
     private void Setup()
@@ -128,6 +129,37 @@ public class LevelGenerator : MonoBehaviour
                             grid[neighbourX, neighbourY] = GridType.Wall;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private void RemoveIsolatedWalls()
+    {
+        for (var x = 0; x < size.x - 1; x++)
+        {
+            for (var y = 0; y < size.y - 1; y++)
+            {
+                if (grid[x, y] != GridType.Wall) continue;
+
+                var wallCount = 0;
+                
+                for (var neighbourX = x - 1; neighbourX <= x + 1; neighbourX++)
+                {
+                    for (var neighbourY = y - 1; neighbourY <= y + 1; neighbourY++)
+                    {
+                        if (neighbourX < 0 || neighbourX >= size.x || neighbourY < 0 || neighbourY >= size.y) continue;
+
+                        if (grid[neighbourX, neighbourY] == GridType.Wall)
+                        {
+                            wallCount++;
+                        }
+                    }
+                }
+
+                if (wallCount == 1)
+                {
+                    grid[x, y] = GridType.Floor;
                 }
             }
         }
