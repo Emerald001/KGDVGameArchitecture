@@ -49,12 +49,10 @@ public class GameManager : MonoBehaviour
             ground,
             wall );
         stateMachine.AddState(typeof(InGameState), inGameState);
+        
+        AddTransitionWithKey(menuState, KeyCode.E, typeof(InGameState));
 
         stateMachine.SwitchState(typeof(MenuState));
-
-        AddTransitionWithKey(menuState, KeyCode.KeypadEnter, typeof(InGameState));
-
-        
     }
 
     private void Update()
