@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour, IPooledObject
 {
-    public GameObject cubePrefab;
+    ObjectPooler objectPooler;
 
+    private void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
+    }
+
+    private void Update()
+    {
+        OnObjectSpawn();
+    }
     public void OnObjectSpawn()
     {
-        ObjectPooler.Instance.SpawnFromPool("Cube", transform.position, Quaternion.identity);
+        objectPooler.SpawnFromPool("Cube", transform.position, Quaternion.identity);
     }
 }

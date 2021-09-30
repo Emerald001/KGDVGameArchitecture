@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3115b79271018041b19d90f6e491dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upForce: 1
+  sideForce: 1
 --- !u!54 &-2678844174180220491
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -138,3 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3115b79271018041b19d90f6e491dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upForce: 2
+  sideForce: 2
