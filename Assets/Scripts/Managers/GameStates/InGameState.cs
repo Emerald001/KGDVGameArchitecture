@@ -7,16 +7,21 @@ public class InGameState : GameState
 {
     private Player player;
     private LevelGenerator levelGenerator;
-    
+    private ObjectPooler objectPooler;
+    private ObjectPool<Bullet> objectPoolers;
+
+    private GameObject bullet;
+    private int bulletCount;
+
     public GameObject playerInstance;
     public Camera playerCam;
     public Transform spawnpoint;
     public float playerSpeed;
 
     public Vector2Int size;
-    [SerializeField] private Tilemap tilemap;
-    [SerializeField] private Tile ground;
-    [SerializeField] private Tile wall;
+    private Tilemap tilemap;
+    private Tile ground;
+    private Tile wall;
 
     public InGameState(
         StateMachine<GameManager> _stateMachine,
@@ -24,6 +29,9 @@ public class InGameState : GameState
         Camera _playerCam,
         Transform _spawnpoint,
         float _playerSpeed,
+
+        GameObject _bullet,
+        int _bulletCount,
 
         Vector2Int _size,
         Tilemap _tilemap,
@@ -36,6 +44,9 @@ public class InGameState : GameState
         this.spawnpoint = _spawnpoint;
         this.playerSpeed = _playerSpeed;
 
+        this.bullet = _bullet;
+        this.bulletCount = _bulletCount;
+
         this.size = _size;
         this.tilemap = _tilemap;
         this.ground = _ground;
@@ -47,6 +58,11 @@ public class InGameState : GameState
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
+
+        objectPooler = new ObjectPooler("Bullet", bullet, bulletCount);
+        objectPooler.OnStart();
+
+        objectPoolers = new ObjectPool<Bullet>();
 
         player = new Player(playerInstance, playerCam, spawnpoint, playerSpeed);
         player.OnEnter();
