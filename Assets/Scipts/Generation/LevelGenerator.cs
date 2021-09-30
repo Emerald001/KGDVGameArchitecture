@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 public class LevelGenerator
 {
+    public static LevelGenerator instance { get; } = new LevelGenerator();
+    private LevelGenerator() { }
+    
     private struct Walker
     {
         public Vector2 pos;
@@ -30,7 +33,10 @@ public class LevelGenerator
     private int maxWalkers = 10;
 
     private float fillPercent = 0.2f;
-    
+
+    public Vector3 spawnPoint { get; private set; }
+
+    public Vector3 exitPoint { get; private set; }
     public LevelGenerator(Vector2Int _size)
     {
         size = _size;
@@ -42,6 +48,7 @@ public class LevelGenerator
         MoveWalkers();
         CreateWalls();
         RemoveIsolatedWalls();
+        exitPoint = CalculateExitPosition();
     }
 
     private void Setup()
@@ -63,6 +70,7 @@ public class LevelGenerator
         };
 
         walkers.Add(newWalker);
+        spawnPoint = newWalker.pos;
     }
 
     private void MoveWalkers()
@@ -210,4 +218,27 @@ public class LevelGenerator
             }
         }
     }
+
+    private Vector3 CalculateExitPosition() {
+        var exitPos = spawnPoint;
+        var exitDistance = 0f;
+
+        for (var x = 0; x < size.x; x++)
+        {
+            for (var y = 0; y < size.y; y++)
+            {
+                if (grid[x, y] != GridType.Floor) continue;
+                
+                var nextPos = new Vector2(x, y);
+                var distance = Vector2.Distance(spawnPoint, nextPos);
+
+                if (!(distance > exitDistance)) continue;
+                
+                exitDistance = distance;
+                exitPos = nextPos;
+            }
+        }
+
+        return exitPos;
+    }  
 }
