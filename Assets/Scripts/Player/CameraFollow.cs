@@ -19,6 +19,7 @@ public class CameraFollow
     public void OnEnter()
     {
         offset = new Vector3(0, 0, -10);
+        playerCam.transform.position = objectToFollow.transform.position + offset;
     }
 
     // Update is called once per frame
