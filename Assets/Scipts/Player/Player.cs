@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player
 {
     private GameObject player;
+    private GameObject currentPlayer;
     private Camera playerCam;
     private PlayerMovement playerMovement;
     private Transform spawnpoint;
@@ -22,7 +23,9 @@ public class Player
 
     public void OnEnter()
     {
-        playerMovement = new PlayerMovement(GameObject.Instantiate(player, spawnpoint), playerCam, speed);
+        currentPlayer = GameObject.Instantiate(player, spawnpoint);
+
+        playerMovement = new PlayerMovement(currentPlayer, playerCam, speed);
         playerMovement.OnEnter();
     }
 
@@ -30,8 +33,15 @@ public class Player
     {
         playerMovement.OnUpdate();
     }
+
     public void OnFixedUpdate() 
     {
         playerMovement.OnFixedUpdate();
+    }
+
+    public void OnExit()
+    {
+        GameObject.Destroy(currentPlayer);
+        currentPlayer = null;
     }
 }

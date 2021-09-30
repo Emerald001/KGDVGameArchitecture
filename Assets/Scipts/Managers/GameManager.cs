@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("PlayerSettings")]
     public GameObject playerInstance;
     public Camera playerCam;
-    public Vector3 spawnpoint;
+    public Transform spawnpoint;
     public float playerSpeed;
 
     private Player player;
@@ -27,21 +27,51 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        levelGenerator = new LevelGenerator(size);
-        levelGenerator.OnEnter();
-        levelGenerator.SetTilemap(tilemap, ground, wall);
+        MenuState menuState = new MenuState(stateMachine);
+        stateMachine.AddState(typeof(MenuState), menuState); 
+        
+        InGameState inGameState = new InGameState(
+            stateMachine,
+            playerInstance,
+            playerCam,
+            spawnpoint,
+            playerSpeed,
 
-        player = new Player(playerInstance, playerCam, transform, playerSpeed);
-        player.OnEnter();
+            size,
+            tilemap,
+            ground,
+            wall );
+        stateMachine.AddState(typeof(InGameState), inGameState);
+
+        stateMachine.SwitchState(typeof(MenuState));
+
+        AddTransitionWithKey(menuState, KeyCode.KeypadEnter, typeof(InGameState));
+
+        
     }
 
     private void Update()
     {
-        player.OnUpdate();
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            stateMachine.ReloadState();
+        }
+
+        stateMachine.RunUpdate();
     }
 
     private void FixedUpdate()
     {
-        player.OnFixedUpdate();
+        stateMachine.RunFixedUpdate();
+    }
+
+    public void AddTransitionWithKey(State<GameManager> _state, KeyCode _keyCode, System.Type _stateTo)
+    {
+        _state.AddTransition(new Transition<GameManager>(
+            (x) => {
+                if (Input.GetKeyDown(_keyCode))
+                    return true;
+                return false;
+            }, _stateTo));
     }
 }

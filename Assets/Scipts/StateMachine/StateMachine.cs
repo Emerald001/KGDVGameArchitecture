@@ -30,6 +30,13 @@ public class StateMachine<T>
         }
     }
 
+    public void ReloadState()
+    {
+        currentState.OnExit();
+
+        currentState.OnEnter();
+    }
+
     public void AddState(System.Type _type, State<T> _state)
     {
         if (stateDictionary.ContainsValue(_state))
@@ -53,5 +60,10 @@ public class StateMachine<T>
     public void RunUpdate()
     {
         currentState.OnUpdate();
+    }
+
+    public void RunFixedUpdate()
+    {
+        currentState.OnFixedUpdate();
     }
 }

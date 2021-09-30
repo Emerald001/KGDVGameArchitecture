@@ -6,6 +6,7 @@ public abstract class State<T>
 {
     public abstract void OnEnter();
     public abstract void OnUpdate();
+    public abstract void OnFixedUpdate();
     public abstract void OnExit();
 
     public StateMachine<T> stateMachine { get; protected set; }
