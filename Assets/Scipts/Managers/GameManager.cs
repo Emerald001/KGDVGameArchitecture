@@ -1,27 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
     //The only one with MonoBehaviour
 
-    public GameObject PlayerInstance;
+    [Header("PlayerSettings")]
+    public GameObject playerInstance;
+    public Camera playerCam;
+    public Vector3 spawnpoint;
+    public float playerSpeed;
 
-    private PlayerMovement playerMovement;
+    private Player player;
+
+    [Header("GenerationSettings")] 
+    public Vector2Int size = Vector2Int.one * 50;
+
+    private LevelGenerator levelGenerator;
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Tile ground;
+    [SerializeField] private Tile wall;
+
     private StateMachine<GameManager> stateMachine;
-
-    void Start()
+    
+    private void Start()
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        playerMovement = new PlayerMovement(PlayerInstance, transform);
-        playerMovement.OnEnter();
+        levelGenerator = new LevelGenerator(size);
+        levelGenerator.OnEnter();
+        levelGenerator.SetTilemap(tilemap, ground, wall);
+
+        player = new Player(playerInstance, playerCam, transform, playerSpeed);
+        player.OnEnter();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        playerMovement.OnUpdate();
+        player.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        player.OnFixedUpdate();
     }
 }

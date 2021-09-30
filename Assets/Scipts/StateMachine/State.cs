@@ -11,13 +11,13 @@ public abstract class State<T>
     public StateMachine<T> stateMachine { get; protected set; }
     public List<Transition<T>> transitions = new List<Transition<T>>();
 
-    public State(StateMachine<T> stateMachine)
+    public State(StateMachine<T> _stateMachine)
     {
-        this.stateMachine = stateMachine;
+        this.stateMachine = _stateMachine;
     }
 
-    public virtual void AddTransition(Transition<T> transition)
+    public virtual void AddTransition(Transition<T> _transition)
     {
-        transitions.Add(transition);
+        transitions.Add(_transition);
     }
 }

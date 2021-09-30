@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour, IPooledObject
@@ -18,5 +16,7 @@ public class CubeSpawner : MonoBehaviour, IPooledObject
     public void OnObjectSpawn()
     {
         objectPooler.SpawnFromPool("Cube", transform.position, Quaternion.identity);
+
     }
 }
+

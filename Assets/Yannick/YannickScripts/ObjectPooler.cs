@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ObjectPooler : MonoBehaviour
 {
     [System.Serializable]
@@ -15,25 +11,31 @@ public class ObjectPooler : MonoBehaviour
     #region Singleton
 
     public static ObjectPooler Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+//    // Start is called before the first frame update
+//    void OnStart()
+//    {
+//        poolDictionary = new Dictionary<string, Queue<T>>();
 
     #endregion
 
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
+//            for (int i = 0; i < pool.totalSize; i++)
+//            {
+//                T obj = new prefab;
+//                objectPool.Enqueue(obj);
+//            }
+
+//            poolDictionary.Add(pool.tag, objectPool);
+//        }
+//    }
 
     void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach(Pool pool in pools)
-        {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+//        T objectToSpawn = poolDictionary[_tag].Dequeue();
+
 
             for (int i = 0; i < pool.size; i++)
             {
@@ -75,3 +77,4 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 }
+
