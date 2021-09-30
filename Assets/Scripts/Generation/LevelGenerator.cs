@@ -5,9 +5,6 @@ using Random = UnityEngine.Random;
 
 public class LevelGenerator
 {
-    public static LevelGenerator instance { get; } = new LevelGenerator();
-    private LevelGenerator() { }
-    
     private struct Walker
     {
         public Vector2 pos;

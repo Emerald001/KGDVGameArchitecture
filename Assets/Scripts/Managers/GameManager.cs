@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("PlayerSettings")]
     public GameObject playerInstance;
     public Camera playerCam;
-    public Transform spawnpoint;
+    public Vector3 spawnpoint;
     public float playerSpeed;
 
     private Player player;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
     public void AddTransitionWithKey(State<GameManager> _state, KeyCode _keyCode, System.Type _stateTo)
     {
         _state.AddTransition(new Transition<GameManager>(
-            (x) => {
+            (_x) => {
                 if (Input.GetKeyDown(_keyCode))
                     return true;
                 return false;

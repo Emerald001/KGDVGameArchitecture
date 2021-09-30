@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +25,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scipts/Generation/TilemapGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/89/26b6a268/Input.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -41,6 +42,10 @@
       <option value="$PROJECT_DIR$/Assets/Scipts/Generation/TilemapGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiYxzf4lLdbSW5g7OgP6sBw5pE" />
@@ -93,7 +98,7 @@
       <workItem from="1632920175180" duration="1136000" />
       <workItem from="1632921378510" duration="3089000" />
       <workItem from="1632996118905" duration="772000" />
-      <workItem from="1633007737670" duration="1895000" />
+      <workItem from="1633007737670" duration="2594000" />
     </task>
     <servers />
   </component>
