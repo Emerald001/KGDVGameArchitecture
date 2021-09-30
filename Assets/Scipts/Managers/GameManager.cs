@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private Player player;
 
     [Header("GenerationSettings")] 
-    public Vector2Int size = Vector2Int.one * 50;
+    public Vector2Int size = Vector2Int.one * 100;
 
     private LevelGenerator levelGenerator;
     [SerializeField] private Tilemap tilemap;

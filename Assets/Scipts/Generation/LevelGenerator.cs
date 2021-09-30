@@ -76,9 +76,12 @@ public class LevelGenerator
                 var walker = walkers[i];
                 
                 //Spawn floors below walkers
-                grid[(int)walker.pos.x, (int)walker.pos.y] = GridType.Floor;
-                floorCount++;
-                
+                if (grid[(int)walker.pos.x, (int)walker.pos.y] != GridType.Floor)
+                {
+                    grid[(int) walker.pos.x, (int) walker.pos.y] = GridType.Floor;
+                    floorCount++;
+                }
+
                 //Kill walkers
                 if (Random.value < walkerDestroyChance && walkers.Count > 1)
                 {
@@ -204,28 +207,6 @@ public class LevelGenerator
                 var tilePos = _tilemap.WorldToCell(pos);
                 
                 _tilemap.SetTile(tilePos, tile);
-            }
-        }
-    }
-
-    public void OnDrawGizmos()
-    {
-        if (grid == null) return;
-
-        for (var x = 0; x < size.x; x++)
-        {
-            for (var y = 0; y < size.y; y++)
-            {
-                var value = grid[x, y];
-                Gizmos.color = value switch
-                {
-                    GridType.Empty => Color.black,
-                    GridType.Floor => Color.white,
-                    GridType.Wall => Color.blue,
-                    _ => Color.red //I don't even know how this could happen, but just to be sure
-                };
-                var pos = new Vector3(-size.x * 0.5f + x + 0.5f, -size.y * 0.5f + y + 0.5f, 0);
-                Gizmos.DrawCube(pos, Vector3.one);
             }
         }
     }
