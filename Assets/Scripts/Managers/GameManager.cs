@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("PlayerSettings")]
     public GameObject playerInstance;
     public Camera playerCam;
-    public Transform spawnpoint;
+    public Vector3 spawnpoint;
     public float playerSpeed;
 
     private Player player;

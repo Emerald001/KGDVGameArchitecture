@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -15,7 +13,7 @@ public class InGameState : GameState
 
     public GameObject playerInstance;
     public Camera playerCam;
-    public Transform spawnpoint;
+    public Vector3 spawnpoint;
     public float playerSpeed;
 
     public Vector2Int size;
@@ -27,7 +25,7 @@ public class InGameState : GameState
         StateMachine<GameManager> _stateMachine,
         GameObject _playerInstance,
         Camera _playerCam,
-        Transform _spawnpoint,
+        Vector3 _spawnpoint,
         float _playerSpeed,
 
         GameObject _bullet,
@@ -63,8 +61,8 @@ public class InGameState : GameState
         objectPooler.OnStart();
 
         objectPoolers = new ObjectPool<Bullet>();
-
-        player = new Player(playerInstance, playerCam, spawnpoint, playerSpeed);
+        
+        player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
     }
 

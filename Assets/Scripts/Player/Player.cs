@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player
@@ -8,12 +6,12 @@ public class Player
     private GameObject currentPlayer;
     private Camera playerCam;
     private PlayerMovement playerMovement;
-    private Transform spawnpoint;
+    private Vector3 spawnpoint;
 
     //player Settings
     private float speed;
 
-    public Player( GameObject _player, Camera _playerCam, Transform _spawnPoint, float _speed)
+    public Player( GameObject _player, Camera _playerCam, Vector3 _spawnPoint, float _speed)
     {
         this.playerCam = _playerCam;
         this.player = _player;
@@ -23,7 +21,7 @@ public class Player
 
     public void OnEnter()
     {
-        currentPlayer = GameObject.Instantiate(player, spawnpoint);
+        currentPlayer = Object.Instantiate(player, spawnpoint, Quaternion.identity);
 
         playerMovement = new PlayerMovement(currentPlayer, playerCam, speed);
         playerMovement.OnEnter();
@@ -41,7 +39,7 @@ public class Player
 
     public void OnExit()
     {
-        GameObject.Destroy(currentPlayer);
+        Object.Destroy(currentPlayer);
         currentPlayer = null;
     }
 }
