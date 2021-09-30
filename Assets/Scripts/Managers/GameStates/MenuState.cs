@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MenuState : GameState
 {
-    public Canvas canvas;
+    public GameObject canvas;
 
     public MenuState(StateMachine<GameManager> _stateMachine) : base(_stateMachine) { }
 
@@ -13,12 +13,14 @@ public class MenuState : GameState
     {
         Debug.Log("Main Menu State");
 
-        GameObject thingy = new GameObject();
-        thingy.name = "Canvas";
-        thingy.AddComponent<Canvas>();
+        canvas = new GameObject();
+        canvas.name = "Canvas";
+        canvas.AddComponent<Canvas>();
+        canvas.AddComponent<CanvasScaler>();
+        canvas.AddComponent<GraphicRaycaster>();
 
         GameObject textGO = new GameObject();
-        textGO.transform.parent = thingy.transform;
+        textGO.transform.parent = canvas.transform;
         Text text = textGO.AddComponent<Text>();
 
         text.fontSize = 48;
