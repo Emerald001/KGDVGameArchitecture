@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [Header("MenuSettings")]
     public Canvas canvas;
+    public KeyCode keyToStart = KeyCode.E;
 
     [Header("PlayerSettings")]
     public GameObject playerInstance;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        MenuState menuState = new MenuState(stateMachine, canvas);
+        MenuState menuState = new MenuState(stateMachine, canvas, keyToStart.ToString());
         stateMachine.AddState(typeof(MenuState), menuState); 
         
         InGameState inGameState = new InGameState(
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour
             wall );
         stateMachine.AddState(typeof(InGameState), inGameState);
         
-        AddTransitionWithKey(menuState, KeyCode.E, typeof(InGameState));
+        AddTransitionWithKey(menuState, keyToStart, typeof(InGameState));
 
         stateMachine.SwitchState(typeof(MenuState));
     }
