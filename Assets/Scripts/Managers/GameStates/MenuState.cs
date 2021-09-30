@@ -7,16 +7,18 @@ public class MenuState : GameState
 {
     public Canvas canvasInstance;
     public Canvas tmpCanvas;
+    public string key;
 
-    public MenuState(StateMachine<GameManager> _stateMachine, Canvas _canvas) : base(_stateMachine) {
+    public MenuState(StateMachine<GameManager> _stateMachine, Canvas _canvas, string _key) : base(_stateMachine) {
         this.canvasInstance = _canvas;
+        this.key = _key;
     }
 
     public override void OnEnter()
     {
         tmpCanvas = GameObject.Instantiate(canvasInstance);
         Text text = tmpCanvas.GetComponentInChildren<Text>();
-        text.text = "Press E to start";
+        text.text = "Press " + key + " to start";
     }
     public override void OnUpdate()
     {

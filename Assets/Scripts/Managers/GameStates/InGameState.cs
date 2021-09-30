@@ -62,7 +62,6 @@ public class InGameState : GameState
 
         objectPoolers = new ObjectPool<Bullet>();
         
-        Debug.Log(levelGenerator.spawnPoint);
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
     }

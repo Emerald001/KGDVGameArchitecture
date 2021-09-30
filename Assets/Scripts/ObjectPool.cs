@@ -10,8 +10,6 @@ public class ObjectPool<T> where T : IPoolable
     public ObjectPool()
     {
         AddNewItemToPool();
-
-        Debug.Log(inactivePool);
     }
 
     public T RequestObject()
