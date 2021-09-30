@@ -642,7 +642,7 @@ MonoBehaviour:
   playerSpeed: 5
   bullet: {fileID: 0}
   bulletCount: 0
-  size: {x: 20, y: 20}
+  size: {x: 50, y: 50}
   tilemap: {fileID: 790341828}
   ground: {fileID: 11400000, guid: 3acfe9f4489ef124cbfe2774027c6bf5, type: 2}
   wall: {fileID: 11400000, guid: 711b0f1dbff59c04b82f5d6ea3d5dfc4, type: 2}
