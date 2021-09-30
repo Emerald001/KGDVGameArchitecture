@@ -1,63 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+public class ObjectPooler
+{
+    public ObjectPooler(string _tag, GameObject _prefab, int _size)
+    {
+        this.tag = _tag;
+        this.prefab = _prefab;
+        this.size = _size;
+    }
 
-//public class ObjectPooler<T>
-//{
-//    [System.Serializable]
-//    public class Pool
-//    {
-//        public string tag;
-//        public T prefab;
-//        public int totalSize;
-//    }
+    public string tag;
+    public GameObject prefab;
+    public int size;
 
-//    public List<Pool> pools;
-//    public Dictionary<string, Queue<T>> poolDictionary;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
+    public void OnStart()
+    {
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-//    // Start is called before the first frame update
-//    void OnStart()
-//    {
-//        poolDictionary = new Dictionary<string, Queue<T>>();
+        Queue<GameObject> objectPool = new Queue<GameObject>();
 
-//        foreach(Pool pool in pools)
-//        {
-//            Queue<T> objectPool = new Queue<T>();
+        for (int i = 0; i < size; i++)
+        {
+            GameObject obj = GameObject.Instantiate(prefab);
+            obj.SetActive(false);
+            objectPool.Enqueue(obj);
+        }
 
-//            for (int i = 0; i < pool.totalSize; i++)
-//            {
-//                T obj = new prefab;
-//                objectPool.Enqueue(obj);
-//            }
+        poolDictionary.Add(tag, objectPool);
+    }
 
-//            poolDictionary.Add(pool.tag, objectPool);
-//        }
-//    }
+    public GameObject SpawnFromPool(string _tag, Vector3 _position)
+    {
+        if (!poolDictionary.ContainsKey(_tag))
+        {
+            Debug.Log("error");
+            return null;
+        }
 
-//    public T SpawnFromPool(string _tag, Vector3 _position, Quaternion _rotation)
-//    {
-//        if (!poolDictionary.ContainsKey(_tag))
-//        {
-//            return null;
-//        }
+        GameObject objectToSpawn = poolDictionary[_tag].Dequeue();
 
-//        T objectToSpawn = poolDictionary[_tag].Dequeue();
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = _position;
 
-//        objectToSpawn.SetActive(true);
-//        objectToSpawn.transform.position = _position;
-//        objectToSpawn.transform.rotation = _rotation;
+        poolDictionary[_tag].Enqueue(objectToSpawn);
 
-
-//        IPooledObject pooledObject = objectToSpawn.GetComponent<IPooledObject>(); 
-//        if (pooledObject != null)
-//        {
-//            pooledObject.OnObjectSpawn();
-//        }
-
-//        poolDictionary[_tag].Enqueue(objectToSpawn);
-
-//        return objectToSpawn;
-//    }
-//}
+        return objectToSpawn;
+    }
+}
