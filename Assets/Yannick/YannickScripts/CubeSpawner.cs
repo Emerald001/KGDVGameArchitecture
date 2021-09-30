@@ -1,10 +1,22 @@
 using UnityEngine;
 
-public class CubeSpawner : MonoBehaviour
+public class CubeSpawner : MonoBehaviour, IPooledObject
 {
-    void FixedUpdate()
+    ObjectPooler objectPooler;
+
+    private void Start()
     {
-        //ObjectPooler.instance.SpawnFromPool("Cube", transform.position, Quaternion.identity);
+        objectPooler = ObjectPooler.Instance;
+    }
+
+    private void Update()
+    {
+        OnObjectSpawn();
+    }
+    public void OnObjectSpawn()
+    {
+        objectPooler.SpawnFromPool("Cube", transform.position, Quaternion.identity);
+
     }
 }
 
