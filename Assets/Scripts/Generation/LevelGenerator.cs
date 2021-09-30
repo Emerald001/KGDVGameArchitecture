@@ -45,6 +45,8 @@ public class LevelGenerator
         MoveWalkers();
         CreateWalls();
         RemoveIsolatedWalls();
+
+        spawnPoint = Vector2.one * 0.5f;
         exitPoint = CalculateExitPosition();
     }
 
@@ -67,7 +69,6 @@ public class LevelGenerator
         };
 
         walkers.Add(newWalker);
-        spawnPoint = newWalker.pos;
     }
 
     private void MoveWalkers()
@@ -237,5 +238,24 @@ public class LevelGenerator
         }
 
         return exitPos;
-    }  
+    }
+
+    private Vector3 GetRandomFloorPosition()
+    {
+        var floors = new List<Vector3>();
+        
+        for (var x = 0; x < size.x; x++)
+        {
+            for (var y = 0; y < size.y; y++)
+            {
+                if (grid[x, y] != GridType.Floor) continue;
+
+                var pos = new Vector3(-size.x * 0.5f + x + 0.5f, -size.y * 0.5f + y + 0.5f, 0);
+
+                floors.Add(pos);
+            }
+        }
+
+        return floors[Random.Range(0, floors.Count)];
+    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
 
@@ -50,6 +48,11 @@ public class PlayerMovement : IPhysicsComponent
     {
         var input = InputManager.instance;
 
-        return new Vector3(input.GetButton(KeyBindingActions.Right) - input.GetButton(KeyBindingActions.Left), input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down), 0) * speed;
+        var h = input.GetButton(KeyBindingActions.Right) - input.GetButton(KeyBindingActions.Left);
+        var v = input.GetButton(KeyBindingActions.Up) - input.GetButton(KeyBindingActions.Down);
+
+        var inputAxis = new Vector3(h, v, 0).normalized;
+        
+        return inputAxis * speed;
     }
 }
