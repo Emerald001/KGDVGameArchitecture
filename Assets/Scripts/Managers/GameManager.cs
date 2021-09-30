@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
 {
     //The only one with MonoBehaviour
 
+    [Header("MenuSettings")]
+    public Canvas canvas;
+
     [Header("PlayerSettings")]
     public GameObject playerInstance;
     public Camera playerCam;
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        MenuState menuState = new MenuState(stateMachine);
+        MenuState menuState = new MenuState(stateMachine, canvas);
         stateMachine.AddState(typeof(MenuState), menuState); 
         
         InGameState inGameState = new InGameState(

@@ -5,32 +5,18 @@ using UnityEngine.UI;
 
 public class MenuState : GameState
 {
-    public GameObject canvas;
+    public Canvas canvasInstance;
+    public Canvas tmpCanvas;
 
-    public MenuState(StateMachine<GameManager> _stateMachine) : base(_stateMachine) { }
+    public MenuState(StateMachine<GameManager> _stateMachine, Canvas _canvas) : base(_stateMachine) {
+        this.canvasInstance = _canvas;
+    }
 
     public override void OnEnter()
     {
-        Debug.Log("Main Menu State");
-
-        canvas = new GameObject();
-        canvas.name = "Canvas";
-        canvas.AddComponent<Canvas>();
-        canvas.AddComponent<CanvasScaler>();
-        canvas.AddComponent<GraphicRaycaster>();
-
-        GameObject textGO = new GameObject();
-        textGO.transform.parent = canvas.transform;
-        Text text = textGO.AddComponent<Text>();
-
-        text.fontSize = 48;
-        text.text = "Press " + GetCondition() + " to start";
-        text.alignment = TextAnchor.MiddleCenter;
-
-        RectTransform rectTransform;
-        rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(0, 0, 0);
-        rectTransform.sizeDelta = new Vector2(600, 200);
+        tmpCanvas = GameObject.Instantiate(canvasInstance);
+        Text text = tmpCanvas.GetComponentInChildren<Text>();
+        text.text = "Press E to start";
     }
     public override void OnUpdate()
     {
@@ -42,15 +28,6 @@ public class MenuState : GameState
     }
     public override void OnExit()
     {
-        GameObject.Destroy(canvas);
-    }
-
-    string GetCondition()
-    {
-        foreach (Transition<GameManager> transition in transitions)
-        {
-            return transition.condition.ToString();
-        }
-        return null;
+        Canvas.Destroy(tmpCanvas.gameObject);
     }
 }
