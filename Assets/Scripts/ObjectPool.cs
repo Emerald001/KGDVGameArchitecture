@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class ObjectPool<T> where T : IPoolable
@@ -9,6 +10,8 @@ public class ObjectPool<T> where T : IPoolable
     public ObjectPool()
     {
         AddNewItemToPool();
+
+        Debug.Log(inactivePool);
     }
 
     public T RequestObject()
@@ -47,7 +50,6 @@ public class ObjectPool<T> where T : IPoolable
     {
         T instance = (T)Activator.CreateInstance(typeof(T));
         inactivePool.Add(instance);
-        UnityEngine.Debug.Log("A New Item was added to the pool");
         return instance;
     }
 }

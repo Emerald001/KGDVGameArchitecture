@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
 
     private Player player;
 
+    [Header("BulletSettings")]
+    public GameObject bullet;
+    public int bulletCount;
+
     [Header("GenerationSettings")] 
     public Vector2Int size = Vector2Int.one * 100;
 
@@ -36,6 +40,9 @@ public class GameManager : MonoBehaviour
             playerCam,
             spawnpoint,
             playerSpeed,
+
+            bullet,
+            bulletCount,
 
             size,
             tilemap,
