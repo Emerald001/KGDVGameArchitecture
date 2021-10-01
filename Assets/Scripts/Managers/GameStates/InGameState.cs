@@ -10,18 +10,14 @@ public class InGameState : GameState
 
     public ObjectPooler bulletPooler;
 
+    public UImanager uiManager;
+    
     private GameObject bullet;
     private int bulletCount;
 
-    public UImanager uiManager;
-    public Text ammoText;
-
-    public GameObject gunBarrel;
     public List<GunModifier> gunModifiers;
 
-    public GameObject playerInstance;
     public Camera playerCam;
-    public Vector3 spawnpoint;
     public float playerSpeed;
 
     public Vector2Int size;
@@ -31,17 +27,12 @@ public class InGameState : GameState
 
     public InGameState(
         StateMachine<GameManager> _stateMachine,
-        GameObject _playerInstance,
         Camera _playerCam,
-        Vector3 _spawnpoint,
         float _playerSpeed,
 
         GameObject _bullet,
         int _bulletCount,
 
-        Text _ammoText,
-
-        GameObject _gunBarrel,
         List<GunModifier> _gunModifiers,
 
         Vector2Int _size,
@@ -50,38 +41,18 @@ public class InGameState : GameState
         Tile _wall
         ) : base(_stateMachine) 
     {
-        this.playerInstance = _playerInstance;
         this.playerCam = _playerCam;
-        this.spawnpoint = _spawnpoint;
         this.playerSpeed = _playerSpeed;
 
         this.bullet = _bullet;
         this.bulletCount = _bulletCount;
 
-        this.ammoText = _ammoText;
-
-        this.gunBarrel = _gunBarrel;
         this.gunModifiers = _gunModifiers;
 
         this.size = _size;
         this.tilemap = _tilemap;
         this.ground = _ground;
         this.wall = _wall;
-
-        var tmpCanvas = GameObject.Instantiate(Resources.Load("AmmoCanvas") as GameObject);
-
-        uiManager = new UImanager(tmpCanvas.GetComponentInChildren<Text>());
-        uiManager.OnEnter();
-
-        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
-        bulletPooler.OnStart();
-
-        levelGenerator = new LevelGenerator(size);
-        levelGenerator.OnEnter();
-        levelGenerator.SetTilemap(tilemap, ground, wall);
-
-        player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
-        player.OnEnter();
     }
 
     public override void OnEnter()

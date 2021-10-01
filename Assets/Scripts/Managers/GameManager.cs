@@ -70,17 +70,12 @@ public class GameManager : MonoBehaviour
         
         InGameState inGameState = new InGameState(
             stateMachine,
-            playerInstance,
             playerCam,
-            spawnpoint,
             playerSpeed,
 
             bullet,
             bulletCount,
 
-            ammoText,
-
-            gunBarrel,
             gunModifiers,
 
             size,
