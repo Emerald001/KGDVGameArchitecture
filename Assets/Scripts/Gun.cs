@@ -27,11 +27,7 @@ public class Gun
     {
         gunBarrel = _gunBarrel;
         gunModifiers = _gunModifiers;
-        Debug.Log(gunModifiers.Count);
-    }
 
-    public void OnEnter()
-    {
         Ammo = magSize;
         EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
 
@@ -97,6 +93,7 @@ public class Gun
                 {
                     b.OnGunShoot();
                 }
+
                 //shoot bullet
                 GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position,Quaternion.Euler(new Vector3(0,0, gunBarrel.transform.rotation.eulerAngles.z - 90) ));
                 //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);

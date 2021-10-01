@@ -87,7 +87,6 @@ public static class EventManager<T>
     }
 }
 
-
 public static class EventManager<T,K>
 {
     private static Dictionary<EventType, System.Action<T,K>> eventDictionary = new Dictionary<EventType, System.Action<T,K>>();

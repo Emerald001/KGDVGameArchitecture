@@ -9,8 +9,6 @@ public class YannickManager : MonoBehaviour
 
     [SerializeField] private int size;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
