@@ -67,22 +67,39 @@ public class InGameState : GameState
         this.tilemap = _tilemap;
         this.ground = _ground;
         this.wall = _wall;
-    }
 
-    public override void OnEnter()
-    {
+        var tmpCanvas = GameObject.Instantiate(Resources.Load("AmmoCanvas") as GameObject);
+
+        uiManager = new UImanager(tmpCanvas.GetComponentInChildren<Text>());
+        uiManager.OnEnter();
+
+        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
+        bulletPooler.OnStart();
+
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
 
-        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
-        bulletPooler.OnStart();
-        
         player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
+    }
 
-        uiManager = new UImanager(ammoText);
+    public override void OnEnter()
+    {
+        var tmpCanvas = GameObject.Instantiate(Resources.Load("AmmoCanvas") as GameObject);
+
+        uiManager = new UImanager(tmpCanvas.GetComponentInChildren<Text>());
         uiManager.OnEnter();
+
+        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
+        bulletPooler.OnStart();
+
+        levelGenerator = new LevelGenerator(size);
+        levelGenerator.OnEnter();
+        levelGenerator.SetTilemap(tilemap, ground, wall);
+
+        player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
+        player.OnEnter();
     }
 
     public override void OnUpdate()

@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class MenuState : GameState
 {
     public Canvas canvasInstance;
-    public Canvas tmpCanvas;
+    public GameObject tmpCanvas;
     public string key;
 
-    public MenuState(StateMachine<GameManager> _stateMachine, Canvas _canvas, string _key) : base(_stateMachine) {
-        this.canvasInstance = _canvas;
+    public MenuState(StateMachine<GameManager> _stateMachine, string _key) : base(_stateMachine) {
         this.key = _key;
     }
 
     public override void OnEnter()
     {
-        tmpCanvas = GameObject.Instantiate(canvasInstance);
+        tmpCanvas = GameObject.Instantiate(Resources.Load("MenuCanvas") as GameObject);
         Text text = tmpCanvas.GetComponentInChildren<Text>();
         text.text = "Press " + key + " to start";
     }

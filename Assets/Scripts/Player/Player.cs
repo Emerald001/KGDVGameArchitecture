@@ -39,7 +39,6 @@ public class Player
 
         //gunBarrel = player.currentGun;
         gun = new Gun(currentGun, gunModifiers, owner.bulletPooler);
-        gun.OnEnter();
     }
 
     public void OnUpdate() 

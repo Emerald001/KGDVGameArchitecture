@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        MenuState menuState = new MenuState(stateMachine, canvas, keyToStart.ToString());
+        MenuState menuState = new MenuState(stateMachine, keyToStart.ToString());
         stateMachine.AddState(typeof(MenuState), menuState); 
         
         InGameState inGameState = new InGameState(
