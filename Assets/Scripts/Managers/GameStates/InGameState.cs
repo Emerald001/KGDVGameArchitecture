@@ -78,7 +78,7 @@ public class InGameState : GameState
 
         bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
         bulletPooler.OnStart();
-        
+
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
