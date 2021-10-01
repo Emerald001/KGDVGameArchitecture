@@ -6,8 +6,8 @@ public class InGameState : GameState
 {
     private Player player;
     private LevelGenerator levelGenerator;
-    private ObjectPooler objectPooler;
-    private ObjectPool<Bullet> objectPoolers;
+
+    public ObjectPooler bulletPooler;
 
     private GameObject bullet;
     private int bulletCount;
@@ -64,21 +64,18 @@ public class InGameState : GameState
 
     public override void OnEnter()
     {
-
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
 
-        objectPooler = new ObjectPooler("Bullet", bullet, bulletCount);
-        objectPooler.OnStart();
-
-        objectPoolers = new ObjectPool<Bullet>();
+        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
+        bulletPooler.OnStart();
         
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
         gunBarrel = player.currentPlayer;
-        gun = new Gun(gunBarrel, gunModifiers);
+        gun = new Gun(gunBarrel, gunModifiers, bulletPooler );
         gun.OnEnter();
 
     }

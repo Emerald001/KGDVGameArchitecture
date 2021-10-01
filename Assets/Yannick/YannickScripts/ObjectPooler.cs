@@ -33,7 +33,7 @@ public class ObjectPooler
         poolDictionary.Add(tag, objectPool);
     }
 
-    public GameObject SpawnFromPool(string _tag, Vector3 _position)
+    public GameObject SpawnFromPool(string _tag, Vector3 _position, Quaternion _rotation)
     {
         if (!poolDictionary.ContainsKey(_tag))
         {
@@ -45,6 +45,7 @@ public class ObjectPooler
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = _position;
+        objectToSpawn.transform.rotation = _rotation;
 
         poolDictionary[_tag].Enqueue(objectToSpawn);
 

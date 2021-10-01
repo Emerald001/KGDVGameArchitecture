@@ -17,7 +17,7 @@ public class CubeSpawner : MonoBehaviour, IPooledObject
     }
     public void OnObjectSpawn()
     {
-        objectPooler.SpawnFromPool("Cube", transform.position);
+        objectPooler.SpawnFromPool("Cube", transform.position, transform.rotation);
 
     }
 }

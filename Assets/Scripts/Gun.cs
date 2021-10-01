@@ -8,7 +8,7 @@ public class Gun
     public GameObject bulletPrefab;
     public int damage;
     public float fireRate = 0.4f;
-    public float shootPower = 3f;
+    public float shootPower = 4f;
     public int magSize = 10;
     public float reloadTime = 1f;
     public bool isReloading;
@@ -18,11 +18,12 @@ public class Gun
     public Color bulletColor;
     public List<GunModifier> gunModifiers;
 
+    private ObjectPooler bulletPooler;
     private bool waitingForNextShot = false;
     private float shootTimer;
     private int Ammo = 6;
 
-    public Gun(GameObject _gunBarrel, List<GunModifier> _gunModifiers)
+    public Gun(GameObject _gunBarrel, List<GunModifier> _gunModifiers, ObjectPooler _bulletPool)
     {
         gunBarrel = _gunBarrel;
         gunModifiers = _gunModifiers;
@@ -48,14 +49,14 @@ public class Gun
 
         if (autoFire)
         {
-            if (Input.GetMouseButton(0))
+            if (InputManager.instance.GetButton(KeyBindingActions.Shoot) == 1)
             {
                 Shoot();
             }
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputManager.instance.GetButtonDown(KeyBindingActions.Shoot) == 1)
             {
                 Shoot();
             }
@@ -63,15 +64,15 @@ public class Gun
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //StartCoroutine(Reload());
+            Reload();
         }
 
     }
 
-    public virtual IEnumerator Reload()
+    public virtual void Reload()
     {
         //do reloading stuff
-        yield return new WaitForSeconds(reloadTime);
+       // yield return new WaitForSeconds(reloadTime);
         Ammo = magSize;
     }
 
@@ -89,14 +90,16 @@ public class Gun
 
 
                 foreach (GunModifier b in gunModifiers)
+
                 {
                     b.OnGunShoot();
                 }
-
                 //shoot bullet
-                GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("BulletPrefab") as GameObject, gunBarrel.transform.position, gunBarrel.transform.rotation);
+                GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position, gunBarrel.transform.rotation);
+                //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
+
                 //add bullet damage to bullet here?
-                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * shootPower, ForceMode.Impulse);
+                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * shootPower, ForceMode2D.Impulse);
                 bullet.transform.localScale = bulletSize;
                 bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
                 bullet.GetComponent<ParticleSystem>().startColor = bulletColor;

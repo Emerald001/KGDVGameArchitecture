@@ -21,6 +21,6 @@ public class YannickManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        objectpooler.SpawnFromPool("Cube", transform.position);
+        objectpooler.SpawnFromPool("Cube", transform.position, transform.rotation);
     }
 }
