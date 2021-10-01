@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Tile ground;
     [SerializeField] private Tile wall;
 
+    [Header("UISettings")]
+    public Text ammoText;
+
     private StateMachine<GameManager> stateMachine;
     
     private void Start()
@@ -74,7 +78,7 @@ public class GameManager : MonoBehaviour
             bullet,
             bulletCount,
 
-            
+            ammoText,
 
             gunBarrel,
             gunModifiers,
@@ -88,6 +92,8 @@ public class GameManager : MonoBehaviour
         AddTransitionWithKey(menuState, keyToStart, typeof(InGameState));
 
         stateMachine.SwitchState(typeof(MenuState));
+
+        Cursor.visible = false;
     }
 
     private void Update()

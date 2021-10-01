@@ -57,7 +57,7 @@ public static class EventManager<T>
 {
     private static Dictionary<EventType, System.Action<T>> eventDictionary = new Dictionary<EventType, System.Action<T>>();
 
-    public static void Register(EventType _eventType, System.Action<T> _listener)
+    public static void Subscribe(EventType _eventType, System.Action<T> _listener)
     {
         if (!eventDictionary.ContainsKey(_eventType))
         {
@@ -66,7 +66,7 @@ public static class EventManager<T>
         eventDictionary[_eventType] += _listener;
     }
 
-    public static void UnRegister(EventType _eventType, System.Action<T> _listener)
+    public static void Unsubscribe(EventType _eventType, System.Action<T> _listener)
     {
         if (eventDictionary.ContainsKey(_eventType))
         {
@@ -92,7 +92,7 @@ public static class EventManager<T,K>
 {
     private static Dictionary<EventType, System.Action<T,K>> eventDictionary = new Dictionary<EventType, System.Action<T,K>>();
 
-    public static void Register(EventType _eventType, System.Action<T,K> _listener)
+    public static void Subscribe(EventType _eventType, System.Action<T,K> _listener)
     {
         if (!eventDictionary.ContainsKey(_eventType))
         {
@@ -101,7 +101,7 @@ public static class EventManager<T,K>
         eventDictionary[_eventType] += _listener;
     }
 
-    public static void UnRegister(EventType _eventType, System.Action<T,K> _listener)
+    public static void Unsubscribe(EventType _eventType, System.Action<T,K> _listener)
     {
         if (eventDictionary.ContainsKey(_eventType))
         {

@@ -9,7 +9,7 @@ public class Gun
     public int damage;
     public float fireRate = 0.4f;
     public float shootPower = 4f;
-    public int magSize = 10;
+    public int magSize = 6;
     public float reloadTime = 1f;
     public bool isReloading;
     public GameObject gunBarrel;
@@ -33,6 +33,8 @@ public class Gun
     public void OnEnter()
     {
         Ammo = magSize;
+        EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
+
         for (int i = 0; i < gunModifiers.Count; i++)
         {
             //gunModifiers[i] = GameManager.Instance.gunModifiers[i];
@@ -105,7 +107,7 @@ public class Gun
                 Debug.Log("gun shot");
                 Ammo--;
                 //later een keer UI manager maken ofzo?
-                EventManager.Invoke(EventType.AMMO_CHANGED);
+                EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);
 
             }
 

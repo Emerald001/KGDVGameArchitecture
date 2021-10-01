@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class InGameState : GameState
 {
@@ -11,6 +12,9 @@ public class InGameState : GameState
 
     private GameObject bullet;
     private int bulletCount;
+
+    public UImanager uiManager;
+    public Text ammoText;
 
     public Gun gun;
     public GameObject gunBarrel;
@@ -36,6 +40,8 @@ public class InGameState : GameState
         GameObject _bullet,
         int _bulletCount,
 
+        Text _ammoText,
+
         GameObject _gunBarrel,
         List<GunModifier> _gunModifiers,
 
@@ -52,6 +58,8 @@ public class InGameState : GameState
 
         this.bullet = _bullet;
         this.bulletCount = _bulletCount;
+
+        this.ammoText = _ammoText;
 
         this.gunBarrel = _gunBarrel;
         this.gunModifiers = _gunModifiers;
@@ -74,6 +82,8 @@ public class InGameState : GameState
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
+        uiManager = new UImanager(ammoText);
+        uiManager.OnEnter();
         //gunBarrel = player.currentGun;
         gun = new Gun(player.currentGun, gunModifiers, bulletPooler );
         gun.OnEnter();
