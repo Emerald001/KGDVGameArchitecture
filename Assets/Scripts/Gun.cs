@@ -75,6 +75,8 @@ public class Gun
         //do reloading stuff
        // yield return new WaitForSeconds(reloadTime);
         Ammo = magSize;
+        EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
+
     }
 
     public virtual void Shoot()
