@@ -32,7 +32,6 @@ public class Gun
 
     public void OnEnter()
     {
-       // currentGun = Object.Instantiate(gunBarrel, )
         Ammo = magSize;
         for (int i = 0; i < gunModifiers.Count; i++)
         {
@@ -95,7 +94,7 @@ public class Gun
                     b.OnGunShoot();
                 }
                 //shoot bullet
-                GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position, gunBarrel.transform.rotation);
+                GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position,Quaternion.Euler(new Vector3(0,0, gunBarrel.transform.rotation.eulerAngles.z - 90) ));
                 //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
 
                 //add bullet damage to bullet here?

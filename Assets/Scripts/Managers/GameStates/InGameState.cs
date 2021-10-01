@@ -74,8 +74,8 @@ public class InGameState : GameState
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
-        gunBarrel = player.currentPlayer;
-        gun = new Gun(gunBarrel, gunModifiers, bulletPooler );
+        //gunBarrel = player.currentGun;
+        gun = new Gun(player.currentGun, gunModifiers, bulletPooler );
         gun.OnEnter();
 
     }

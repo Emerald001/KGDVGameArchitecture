@@ -4,6 +4,8 @@ public class Player
 {
     private GameObject player;
     public GameObject currentPlayer;
+    public GameObject currentGun;
+
     private Camera playerCam;
     private PlayerMovement playerMovement;
     private Vector3 spawnpoint;
@@ -21,7 +23,9 @@ public class Player
 
     public void OnEnter()
     {
-        currentPlayer = Object.Instantiate(player, spawnpoint, Quaternion.identity);
+        currentPlayer = Object.Instantiate(Resources.Load("Player") as GameObject, spawnpoint, Quaternion.identity);
+        currentGun = Object.Instantiate(Resources.Load("Gunholder") as GameObject,  spawnpoint, Quaternion.identity);
+        currentGun.transform.SetParent(currentPlayer.transform);
 
         playerMovement = new PlayerMovement(currentPlayer, playerCam, speed);
         playerMovement.OnEnter();

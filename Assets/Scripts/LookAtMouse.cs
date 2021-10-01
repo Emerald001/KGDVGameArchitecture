@@ -6,8 +6,9 @@ public class LookAtMouse : MonoBehaviour
 {
     public void Update()
     {
-        Vector3 gobPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z - transform.position.z));
-        transform.LookAt(new Vector3(mousePos.x, mousePos.y , transform.position.z));
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        
     }
 }

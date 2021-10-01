@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [Header("GunSettings")]
     public GameObject gunBarrel;
     public List<GunModifier> gunModifiers;
-
+    public GameObject gunObject;
 
     [Header("BulletSettings")]
     public GameObject bullet;
@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
 
             bullet,
             bulletCount,
+
+            
 
             gunBarrel,
             gunModifiers,
