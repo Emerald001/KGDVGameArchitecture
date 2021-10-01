@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf7397535d626346af62100a338d287, type: 3}
   m_Name: BulletSizeModifier
   m_EditorClassIdentifier: 
-  bulletSizeMultiplier: 2
+  bulletSizeMultiplier: 10

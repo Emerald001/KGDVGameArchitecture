@@ -28,21 +28,14 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("MenuSettings")]
-    public Canvas canvas;
     public KeyCode keyToStart = KeyCode.E;
 
     [Header("PlayerSettings")]
-    public GameObject playerInstance;
-
     public Camera playerCam;
-    public Vector3 spawnpoint;
     public float playerSpeed;
 
-    private Player player;
     [Header("GunSettings")]
-    public GameObject gunBarrel;
     public List<GunModifier> gunModifiers;
-    public GameObject gunObject;
 
     [Header("BulletSettings")]
     public GameObject bullet;
@@ -51,13 +44,9 @@ public class GameManager : MonoBehaviour
     [Header("GenerationSettings")] 
     public Vector2Int size = Vector2Int.one * 100;
 
-    private LevelGenerator levelGenerator;
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tile ground;
     [SerializeField] private Tile wall;
-
-    [Header("UISettings")]
-    public Text ammoText;
 
     private StateMachine<GameManager> stateMachine;
     

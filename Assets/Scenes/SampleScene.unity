@@ -757,22 +757,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0ee81e24fe86a449c314ecdc6baa82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 309806566971039771, guid: 819ab07cab07ce44b984ae2553ae4a65, type: 3}
   keyToStart: 97
-  playerInstance: {fileID: 1426658795142599660, guid: 09d1ebd0582ed8b40845ec554729bd1d, type: 3}
   playerCam: {fileID: 1426094735}
-  spawnpoint: {x: 0, y: 0, z: 0}
   playerSpeed: 5
-  gunBarrel: {fileID: 0}
   gunModifiers:
   - {fileID: 11400000, guid: e1337218005ea6542aa6e2d37b42ac1f, type: 2}
   - {fileID: 11400000, guid: 64577ded2703320478a0b75814e0f884, type: 2}
   - {fileID: 11400000, guid: ae83a04114e61414a80182a71571ac37, type: 2}
-  gunObject: {fileID: 0}
+  - {fileID: 11400000, guid: 58367cf5a0717e346922666fc5aa5dea, type: 2}
+  - {fileID: 11400000, guid: 2608ae308c0ecf242ae383d733cbea42, type: 2}
+  - {fileID: 11400000, guid: d380ffc37ef55734fb07f5f576b06a55, type: 2}
+  - {fileID: 11400000, guid: f40c5581e4e28cd48a5de08138b8b143, type: 2}
   bullet: {fileID: 725848912054678432, guid: 26abbdb893f19bb46897e68ddf049625, type: 3}
   bulletCount: 0
   size: {x: 50, y: 50}
   tilemap: {fileID: 790341828}
   ground: {fileID: 11400000, guid: 3acfe9f4489ef124cbfe2774027c6bf5, type: 2}
   wall: {fileID: 11400000, guid: 711b0f1dbff59c04b82f5d6ea3d5dfc4, type: 2}
-  ammoText: {fileID: 0}

@@ -45,6 +45,10 @@ public class Player
     {
         playerMovement.OnUpdate();
         gun.OnUpdate();
+
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(currentGun.transform.position);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        currentGun.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public void OnFixedUpdate() 

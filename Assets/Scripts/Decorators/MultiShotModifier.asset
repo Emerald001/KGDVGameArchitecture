@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdc8bd3fa9579f47ad5423d9cf891c0, type: 3}
   m_Name: MultiShotModifier
   m_EditorClassIdentifier: 
-  extraBulletAmount: 4
-  spread: 20
+  extraBulletAmount: 100
+  spread: 90

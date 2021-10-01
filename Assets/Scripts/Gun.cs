@@ -63,7 +63,6 @@ public class Gun
         {
             Reload();
         }
-
     }
 
     public virtual void Reload()
@@ -79,21 +78,16 @@ public class Gun
     {
         if (shootTimer <= 0)
         {
-
             waitingForNextShot = true;
-
-
             if (Ammo > 0)
             {
                 EventManager.Invoke(EventType.GUN_SHOOT);
-
 
                 foreach (GunModifier b in gunModifiers)
 
                 {
                     b.OnGunShoot();
                 }
-
                 //shoot bullet
                 GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position,Quaternion.Euler(new Vector3(0,0, gunBarrel.transform.rotation.eulerAngles.z - 90) ));
                 //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
@@ -103,17 +97,11 @@ public class Gun
                 bullet.transform.localScale = bulletSize;
                 bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
                 bullet.GetComponent<ParticleSystem>().startColor = bulletColor;
-                Debug.Log("gun shot");
                 Ammo--;
                 //later een keer UI manager maken ofzo?
                 EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);
-
             }
-
             shootTimer = fireRate;
         }
-
-    
-
     }
 }
