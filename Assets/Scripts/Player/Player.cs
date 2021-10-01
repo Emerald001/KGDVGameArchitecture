@@ -1,10 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player
 {
-    private GameObject player;
+    public InGameState owner;
+
     public GameObject currentPlayer;
     public GameObject currentGun;
+
+    public Gun gun;
+    public GameObject gunBarrel;
+    public List<GunModifier> gunModifiers;
 
     private Camera playerCam;
     private PlayerMovement playerMovement;
@@ -13,10 +19,11 @@ public class Player
     //player Settings
     private float speed;
 
-    public Player( GameObject _player, Camera _playerCam, Vector3 _spawnPoint, float _speed)
+    public Player(InGameState _owner, Camera _playerCam, List<GunModifier> _gunModifiers, Vector3 _spawnPoint, float _speed)
     {
+        this.owner = _owner;
         this.playerCam = _playerCam;
-        this.player = _player;
+        this.gunModifiers = _gunModifiers;
         this.spawnpoint = _spawnPoint;
         this.speed = _speed;
     }
@@ -29,11 +36,16 @@ public class Player
 
         playerMovement = new PlayerMovement(currentPlayer, playerCam, speed);
         playerMovement.OnEnter();
+
+        //gunBarrel = player.currentGun;
+        gun = new Gun(currentGun, gunModifiers, owner.bulletPooler);
+        gun.OnEnter();
     }
 
     public void OnUpdate() 
     {
         playerMovement.OnUpdate();
+        gun.OnUpdate();
     }
 
     public void OnFixedUpdate() 

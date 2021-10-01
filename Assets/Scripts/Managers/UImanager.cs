@@ -18,7 +18,6 @@ public class UImanager
 
     private void ChangeAmmoText(int _newAmmoCount, int _maxAmmo)
     {
-        Debug.Log("event UI triggered");
         ammoText.text = "AMMO " + _newAmmoCount + "/" + _maxAmmo;
     }
 

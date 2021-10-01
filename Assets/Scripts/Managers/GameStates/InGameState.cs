@@ -16,7 +16,6 @@ public class InGameState : GameState
     public UImanager uiManager;
     public Text ammoText;
 
-    public Gun gun;
     public GameObject gunBarrel;
     public List<GunModifier> gunModifiers;
 
@@ -79,21 +78,16 @@ public class InGameState : GameState
         bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
         bulletPooler.OnStart();
         
-        player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
+        player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
         uiManager = new UImanager(ammoText);
         uiManager.OnEnter();
-        //gunBarrel = player.currentGun;
-        gun = new Gun(player.currentGun, gunModifiers, bulletPooler );
-        gun.OnEnter();
-
     }
 
     public override void OnUpdate()
     {
         player.OnUpdate();
-        gun.OnUpdate();
 
         base.OnUpdate();
     }
