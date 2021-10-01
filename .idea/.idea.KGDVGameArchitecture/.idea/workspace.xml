@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="" />
+    <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,9 +42,9 @@
       <option value="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiYxzf4lLdbSW5g7OgP6sBw5pE" />
