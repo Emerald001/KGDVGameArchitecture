@@ -1,9 +1,30 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
     //The only one with MonoBehaviour
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     [Header("MenuSettings")]
     public Canvas canvas;
@@ -11,11 +32,16 @@ public class GameManager : MonoBehaviour
 
     [Header("PlayerSettings")]
     public GameObject playerInstance;
+
     public Camera playerCam;
     public Vector3 spawnpoint;
     public float playerSpeed;
 
     private Player player;
+    [Header("GunSettings")]
+    public GameObject gunBarrel;
+    public List<GunModifier> gunModifiers;
+
 
     [Header("BulletSettings")]
     public GameObject bullet;
@@ -47,6 +73,9 @@ public class GameManager : MonoBehaviour
 
             bullet,
             bulletCount,
+
+            gunBarrel,
+            gunModifiers,
 
             size,
             tilemap,

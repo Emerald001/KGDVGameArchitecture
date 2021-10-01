@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 public class InGameState : GameState
@@ -10,6 +11,10 @@ public class InGameState : GameState
 
     private GameObject bullet;
     private int bulletCount;
+
+    public Gun gun;
+    public GameObject gunBarrel;
+    public List<GunModifier> gunModifiers;
 
     public GameObject playerInstance;
     public Camera playerCam;
@@ -31,6 +36,9 @@ public class InGameState : GameState
         GameObject _bullet,
         int _bulletCount,
 
+        GameObject _gunBarrel,
+        List<GunModifier> _gunModifiers,
+
         Vector2Int _size,
         Tilemap _tilemap,
         Tile _ground,
@@ -45,6 +53,9 @@ public class InGameState : GameState
         this.bullet = _bullet;
         this.bulletCount = _bulletCount;
 
+        this.gunBarrel = _gunBarrel;
+        this.gunModifiers = _gunModifiers;
+
         this.size = _size;
         this.tilemap = _tilemap;
         this.ground = _ground;
@@ -53,6 +64,7 @@ public class InGameState : GameState
 
     public override void OnEnter()
     {
+
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
@@ -64,11 +76,17 @@ public class InGameState : GameState
         
         player = new Player(playerInstance, playerCam, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
+
+        gun = new Gun(gunBarrel, gunModifiers);
+        gun.OnEnter();
+
     }
 
     public override void OnUpdate()
     {
         player.OnUpdate();
+        gun.OnUpdate();
+
         base.OnUpdate();
     }
 

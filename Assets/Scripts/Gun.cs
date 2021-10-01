@@ -4,46 +4,45 @@ using UnityEngine;
 
 public class Gun
 {
+    //stuff is Public because of Decorator access
     public GameObject bulletPrefab;
-
     public int damage;
     public float fireRate = 0.4f;
-
     public float shootPower = 6;
-
     public int magSize = 6;
-    private int Ammo = 6;
     public float reloadTime = 1f;
     public bool isReloading;
     public GameObject gunBarrel;
     public bool autoFire;
-    private bool waitingForNextShot = false;
-    private float shootTimer;
-
-    public Vector3 bulletSize = new Vector3 (0.3f, 0.3f, 0.3f);
+    public Vector3 bulletSize = new Vector3(0.3f, 0.3f, 0.3f);
     public Color bulletColor;
     public List<GunModifier> gunModifiers;
 
-    public void GunStart(List<GunModifier> _gunModifiers)
+    private bool waitingForNextShot = false;
+    private float shootTimer;
+    private int Ammo = 6;
+
+    public Gun(GameObject _gunBarrel, List<GunModifier> _gunModifiers)
     {
+        gunBarrel = _gunBarrel;
         gunModifiers = _gunModifiers;
-        gunBarrel = GameManager.Instance.gunObject;
+        Debug.Log(gunModifiers.Count);
+    }
 
+    public void OnEnter()
+    {
+       // currentGun = Object.Instantiate(gunBarrel, )
         Ammo = magSize;
-        for (int i = 0; i < GameManager.Instance.gunModifiers.Count; i++)
+        for (int i = 0; i < gunModifiers.Count; i++)
         {
-            //mag dit? ik weet zo geen andere workaround
-
-            gunModifiers[i] = GameManager.Instance.gunModifiers[i];
+            //gunModifiers[i] = GameManager.Instance.gunModifiers[i];
             gunModifiers[i].tempGun = this;
             gunModifiers[i].OnGunStart();
-            Debug.Log("start can gun werk blabal");
-
         }
         //EventManager.Subscribe(EventType.GUN_SHOOT, Shoot);
     }
 
-    public void GunUpdate()
+    public void OnUpdate()
     {
         shootTimer -= Time.deltaTime;
 
@@ -60,6 +59,11 @@ public class Gun
             {
                 Shoot();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //StartCoroutine(Reload());
         }
 
     }
