@@ -16,9 +16,9 @@ public class TripleShotModifier : GunModifier
 
         for (int i = 0; i < extraBulletAmount; i++)
         {
-            GameObject bullet = GameObject.Instantiate(tempGun.bulletPrefab = Resources.Load("BulletPrefab") as GameObject, tempGun.gunBarrel.transform.position, Quaternion.Euler(new Vector3(0,  tempGun.gunBarrel.transform.rotation.eulerAngles.y - spread + (spreadInterval * i), 0)));
+            GameObject bullet = GameObject.Instantiate(tempGun.bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, tempGun.gunBarrel.transform.position, Quaternion.Euler(new Vector3(0,  tempGun.gunBarrel.transform.rotation.eulerAngles.y - spread + (spreadInterval * i), 0)));
             //add bullet damage to bullet here?
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * tempGun.shootPower, ForceMode.Impulse);
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * tempGun.shootPower, ForceMode.Impulse);
             bullet.transform.localScale = tempGun.bulletSize;
             bullet.GetComponent<Renderer>().material.SetColor("_EmissionColor", tempGun.bulletColor);
             bullet.GetComponent<ParticleSystem>().startColor = tempGun.bulletColor;

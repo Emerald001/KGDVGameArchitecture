@@ -8,8 +8,8 @@ public class Gun
     public GameObject bulletPrefab;
     public int damage;
     public float fireRate = 0.4f;
-    public float shootPower = 6;
-    public int magSize = 6;
+    public float shootPower = 3f;
+    public int magSize = 10;
     public float reloadTime = 1f;
     public bool isReloading;
     public GameObject gunBarrel;
@@ -96,7 +96,7 @@ public class Gun
                 //shoot bullet
                 GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("BulletPrefab") as GameObject, gunBarrel.transform.position, gunBarrel.transform.rotation);
                 //add bullet damage to bullet here?
-                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * shootPower, ForceMode.Impulse);
+                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * shootPower, ForceMode.Impulse);
                 bullet.transform.localScale = bulletSize;
                 bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
                 bullet.GetComponent<ParticleSystem>().startColor = bulletColor;

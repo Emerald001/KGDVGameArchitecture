@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player
 {
     private GameObject player;
-    private GameObject currentPlayer;
+    public GameObject currentPlayer;
     private Camera playerCam;
     private PlayerMovement playerMovement;
     private Vector3 spawnpoint;
