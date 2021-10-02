@@ -59,7 +59,6 @@ public class EnemyAI : Interfaces.IDamagable
         {
             enemyManager.enemies.Remove(this);
             Object.Destroy(enemyObject);
-            Debug.Log("Enemy killed");
         }
     }
 

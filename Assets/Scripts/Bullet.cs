@@ -62,9 +62,7 @@ public class Bullet : IPoolable
                         EventManager<GameObject, int>.Invoke(EventType.ENEMY_HIT, hit.collider.gameObject, damage);
                     }
                     EventManager<Bullet, RaycastHit2D>.Invoke(EventType.BULLET_HIT, this, hit);
-                    Debug.Log("bullet hit: " + hit.collider.gameObject.name);
                     BulletHit();
-
                 }
             }
         }
@@ -83,12 +81,11 @@ public class Bullet : IPoolable
 
         if (explosive)
         {
-           GameObject explosion = Object.Instantiate(Resources.Load("EplosionSpawnerPrefab") as GameObject, bulletObject.transform.position, bulletObject.transform.rotation);
+            GameObject explosion = Object.Instantiate(Resources.Load("EplosionSpawnerPrefab") as GameObject, bulletObject.transform.position, bulletObject.transform.rotation);
             //ja ik weet het sorry explosionspawner is een monobehaviour maar het is puur cosmetisch!
             ExplosionSpawner expSpawner = explosion.GetComponent<ExplosionSpawner>();
             expSpawner.explosionColor = bulletColor;
             expSpawner.SpawnExplosion();
-
         }
     }
 

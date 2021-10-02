@@ -17,8 +17,6 @@ public class EnemyManager
         enemySpawnPoints[0] = new Vector3(0, 0, 0);
 
         SpawnEnemies(enemyAmount);
-
-
     }
 
     public void SpawnEnemies(int _spawnAmount)
@@ -38,5 +36,4 @@ public class EnemyManager
             enemies[i].OnUpdate();
         }
     }
-
 }

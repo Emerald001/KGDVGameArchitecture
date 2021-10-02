@@ -27,6 +27,8 @@ public class InGameState : GameState
     private Tile ground;
     private Tile wall;
 
+    private bool paused;
+
     public InGameState(
         StateMachine<GameManager> _stateMachine,
         Camera _playerCam,
@@ -75,19 +77,29 @@ public class InGameState : GameState
         player.OnEnter();
 
         enemyManager = new EnemyManager(player.currentPlayer.transform);
-
     }
 
     public override void OnUpdate()
     {
-        player.OnUpdate();
-        enemyManager.OnUpdate();
-        base.OnUpdate();
+        if (!paused)
+        {
+            player.OnUpdate();
+            enemyManager.OnUpdate();
+            base.OnUpdate();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            paused = !paused;
+        }
     }
 
     public override void OnFixedUpdate()
     {
-        player.OnFixedUpdate();
+        if (!paused)
+        {
+            player.OnFixedUpdate();
+        }
     }
 
     public override void OnExit()

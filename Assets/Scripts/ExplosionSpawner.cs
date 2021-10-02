@@ -12,13 +12,7 @@ public class ExplosionSpawner : MonoBehaviour
     public ExplosionSpawner(Color _bulletColor)
     {
         explosionColor = _bulletColor;
-
     }
-
-    private void Start()
-    {
-    }
-
 
     public void SpawnExplosion()
     {
@@ -26,22 +20,17 @@ public class ExplosionSpawner : MonoBehaviour
         {
             GameObject explosion = Instantiate(explosionFx, transform.position, transform.rotation);
             explosion.GetComponent<ParticleSystem>().startColor = explosionColor;
-           // explosion.GetComponent<ParticleSystem>().
+            // explosion.GetComponent<ParticleSystem>().
 
             collided = true;
             StartCoroutine(DeleteTimer());
         }
-
     }
-
 
     
     public IEnumerator DeleteTimer()
     {
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
-
     }
-
-
 }
