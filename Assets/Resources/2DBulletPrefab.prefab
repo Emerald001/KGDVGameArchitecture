@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9126885855037208983}
   - component: {fileID: 3675177421104544369}
   - component: {fileID: 483126717218038641}
-  - component: {fileID: -996019133148949311}
   m_Layer: 7
   m_Name: 2DBulletPrefab
   m_TagString: Untagged
@@ -4905,17 +4904,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-996019133148949311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7563442456281526792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4241dbebd5660409e2ea64efa97c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionFx: {fileID: 5136364784992689340, guid: a2599674d0810324d91d533089525a2e, type: 3}
-  explosionColor: {r: 0, g: 0, b: 0, a: 0}

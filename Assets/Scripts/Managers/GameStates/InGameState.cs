@@ -67,14 +67,15 @@ public class InGameState : GameState
         bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
         bulletPooler.OnStart();
 
-        enemyManager = new EnemyManager();
-
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
 
         player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
+
+        enemyManager = new EnemyManager(player.currentPlayer.transform);
+
     }
 
     public override void OnUpdate()

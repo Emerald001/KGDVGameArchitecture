@@ -14,6 +14,7 @@ public class Gun
     public bool isReloading;
     public GameObject gunBarrel;
     public bool autoFire;
+    public bool isExplosive;
     public Vector3 bulletSize = new Vector3(0.3f, 0.3f, 0.3f);
     public Color bulletColor;
     public List<GunModifier> gunModifiers;
@@ -103,7 +104,7 @@ public class Gun
                 //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
 
                 //add bullet damage to bullet here?
-                Bullet bulletScript = new Bullet(bulletManager);
+                Bullet bulletScript = new Bullet(bulletManager, bulletColor, isExplosive);
                 bulletScript.bulletObject = bullet;
                 bulletManager.bullets.Add(bulletScript);
                 

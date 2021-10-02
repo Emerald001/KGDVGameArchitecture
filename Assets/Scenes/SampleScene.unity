@@ -764,6 +764,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1337218005ea6542aa6e2d37b42ac1f, type: 2}
   - {fileID: 11400000, guid: 2608ae308c0ecf242ae383d733cbea42, type: 2}
   - {fileID: 11400000, guid: ae83a04114e61414a80182a71571ac37, type: 2}
+  - {fileID: 11400000, guid: d380ffc37ef55734fb07f5f576b06a55, type: 2}
+  - {fileID: 11400000, guid: 64577ded2703320478a0b75814e0f884, type: 2}
+  - {fileID: 11400000, guid: 95656071f1cca6a46b100c31091bc8b8, type: 2}
   bullet: {fileID: 725848912054678432, guid: 26abbdb893f19bb46897e68ddf049625, type: 3}
   bulletCount: 0
   size: {x: 50, y: 50}

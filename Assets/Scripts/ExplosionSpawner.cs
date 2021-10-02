@@ -9,9 +9,14 @@ public class ExplosionSpawner : MonoBehaviour
     private bool collided;
     public Color explosionColor;
 
+    public ExplosionSpawner(Color _bulletColor)
+    {
+        explosionColor = _bulletColor;
+
+    }
+
     private void Start()
     {
-       // SpawnExplosion();
     }
 
 
@@ -22,8 +27,6 @@ public class ExplosionSpawner : MonoBehaviour
             GameObject explosion = Instantiate(explosionFx, transform.position, transform.rotation);
             explosion.GetComponent<ParticleSystem>().startColor = explosionColor;
            // explosion.GetComponent<ParticleSystem>().
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Rigidbody2D>().isKinematic = true;
 
             collided = true;
             StartCoroutine(DeleteTimer());

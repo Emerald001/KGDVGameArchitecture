@@ -2,20 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI
+public class EnemyAI : Interfaces.IDamagable
 {
     public Transform player;
-
+    public EnemyManager enemyManager;
+    int enemyHealth = 20;
     public GameObject enemyObject;
     public float moveSpeedEnemy = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
 
-    public EnemyAI()
+    public EnemyAI(Transform _playerTransform, EnemyManager _enemyManager)
+    {
+        enemyManager = _enemyManager;
+        player = _playerTransform;
+    }
+
+    public void OnStart()
     {
         rb = enemyObject.GetComponent<Rigidbody2D>();
-
+        EventManager<GameObject, int>.Subscribe(EventType.ENEMY_HIT, CheckDamager);
     }
+
 
     // Start is called before the first frame update
 
@@ -33,6 +41,25 @@ public class EnemyAI
         if (distance > 2)
         {
             MoveCharacter(movement);
+        }
+    }
+
+    private void CheckDamager(GameObject _hitEnemy, int _damage)
+    {
+        if (_hitEnemy == enemyObject)
+        {
+            TakeDamage(_damage);
+        }
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        enemyHealth -= _damage;
+        if (enemyHealth <= 0)
+        {
+            enemyManager.enemies.Remove(this);
+            Object.Destroy(enemyObject);
+            Debug.Log("Enemy killed");
         }
     }
 

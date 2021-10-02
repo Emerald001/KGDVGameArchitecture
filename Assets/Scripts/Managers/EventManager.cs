@@ -7,6 +7,7 @@ public enum EventType
     GAME_OVER,
     PLAYER_HIT,
     GUN_SHOOT,
+    ENEMY_HIT,
     BULLET_HIT,
     HEALTH_CHANGED,
     AMMO_CHANGED,

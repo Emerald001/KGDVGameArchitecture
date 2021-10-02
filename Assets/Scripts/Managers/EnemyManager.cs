@@ -4,22 +4,30 @@ using UnityEngine;
 public class EnemyManager
 {
     public List<EnemyAI> enemies;
-    public int enemyAmount = 6;
-    //tijdelijk? moet casper ff aanpassen/gebruiken
-    public Transform[] enemySpawnPoints;
-    public EnemyManager()
+    public Transform playerTransform;
+    public int enemyAmount = 20;
+    // moet casper ff aanpassen/gebruiken
+    public Vector3[] enemySpawnPoints;
+    public EnemyManager(Transform _playerTransform)
     {
+        playerTransform = _playerTransform;
         enemies = new List<EnemyAI>();
+        enemySpawnPoints = new Vector3[1];
+
+        enemySpawnPoints[0] = new Vector3(0, 0, 0);
+
         SpawnEnemies(enemyAmount);
-        //spawn enemies in grid and add to list here?
+
+
     }
 
     public void SpawnEnemies(int _spawnAmount)
     {
         for (int i = 0; i < _spawnAmount; i++)
         {
-            enemies.Add(new EnemyAI());
-            enemies[i].enemyObject = Object.Instantiate(Resources.Load("2DBulletPrefab") as GameObject, enemySpawnPoints[i].position, Quaternion.identity );
+            enemies.Add(new EnemyAI(playerTransform, this));                                     //hier een randomizer plaatsen ofzo V
+            enemies[i].enemyObject = Object.Instantiate(Resources.Load("EnemyPrefab") as GameObject,enemySpawnPoints[0] , Quaternion.identity );
+            enemies[i].OnStart();
         }
     }
 
