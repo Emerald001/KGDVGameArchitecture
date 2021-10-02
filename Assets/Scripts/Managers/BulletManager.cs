@@ -16,11 +16,11 @@ public class BulletManager
 
     }
 
-    public void OnUpdate()
+    public void OnFixedUpdate()
     {
         for (int i = 0; i < bullets.Count; i++)
         {
-            bullets[i].OnUpdate();
+            bullets[i].OnFixedUpdate();
         }
     }
 

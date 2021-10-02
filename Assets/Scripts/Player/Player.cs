@@ -54,6 +54,7 @@ public class Player
     public void OnFixedUpdate() 
     {
         playerMovement.OnFixedUpdate();
+        gun.OnFixedUpdate();
     }
 
     public void OnExit()

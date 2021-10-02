@@ -2,29 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI
 {
     public Transform player;
+
+    public GameObject enemyObject;
     public float moveSpeedEnemy = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
 
-    // Start is called before the first frame update
-    void Start()
+    public EnemyAI()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = enemyObject.GetComponent<Rigidbody2D>();
+
     }
 
+    // Start is called before the first frame update
+
     // Update is called once per frame
-    void Update()
+    public void OnUpdate()
     {
-        Vector2 direction = player.position - transform.position;
+        Vector2 direction = player.position - enemyObject.transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
         direction.Normalize();
         movement = direction;
 
-        float distance = Vector3.Distance(player.position, transform.position);
+        float distance = Vector3.Distance(player.position, enemyObject.transform.position);
 
         if (distance > 2)
         {
@@ -35,6 +39,6 @@ public class EnemyAI : MonoBehaviour
 
     void MoveCharacter(Vector2 _direction)
     {
-        rb.MovePosition((Vector2)transform.position + (_direction * moveSpeedEnemy * Time.deltaTime));
+        rb.MovePosition((Vector2)enemyObject.transform.position + (_direction * moveSpeedEnemy * Time.deltaTime));
     }
 }

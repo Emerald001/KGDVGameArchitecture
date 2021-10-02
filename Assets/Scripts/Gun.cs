@@ -43,10 +43,15 @@ public class Gun
         //EventManager.Subscribe(EventType.GUN_SHOOT, Shoot);
     }
 
+    public void OnFixedUpdate()
+    {
+        bulletManager.OnFixedUpdate();
+
+    }
+
     public void OnUpdate()
     {
         shootTimer -= Time.deltaTime;
-        bulletManager.OnUpdate();
 
 
         if (autoFire)

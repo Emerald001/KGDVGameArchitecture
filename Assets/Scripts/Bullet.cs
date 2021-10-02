@@ -8,7 +8,7 @@ public class Bullet : IPoolable
     public GameObject bulletObject;
     public int damage;
     BulletManager bulletManager;
-    private float raycastDistance = 2f;
+    private float raycastDistance = 8f;
     public Color bulletColor;
 
     public bool explosive;
@@ -31,7 +31,7 @@ public class Bullet : IPoolable
         throw new System.NotImplementedException();
     }
     
-    public void OnUpdate()
+    public void OnFixedUpdate()
     {
         CheckCollision();
     }
@@ -48,7 +48,7 @@ public class Bullet : IPoolable
             {
                 EventManager<Bullet, RaycastHit2D>.Invoke(EventType.BULLET_HIT, this, hit);
                 Debug.Log("bullet hit: " + hit.collider.gameObject.name);
-                //BulletHit();
+                BulletHit();
             }
         }
     }

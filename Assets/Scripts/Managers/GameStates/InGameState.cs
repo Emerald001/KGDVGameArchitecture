@@ -15,6 +15,8 @@ public class InGameState : GameState
     private GameObject bullet;
     private int bulletCount;
 
+    public EnemyManager enemyManager;
+
     public List<GunModifier> gunModifiers;
 
     public Camera playerCam;
@@ -65,6 +67,8 @@ public class InGameState : GameState
         bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
         bulletPooler.OnStart();
 
+        enemyManager = new EnemyManager();
+
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
         levelGenerator.SetTilemap(tilemap, ground, wall);
@@ -76,6 +80,7 @@ public class InGameState : GameState
     public override void OnUpdate()
     {
         player.OnUpdate();
+        enemyManager.OnUpdate();
         base.OnUpdate();
     }
 
