@@ -97,8 +97,11 @@ public class Gun
                 bullet.transform.localScale = bulletSize;
                 bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
                 bullet.GetComponent<ParticleSystem>().startColor = bulletColor;
+
+                //deze refactoren!
+                bullet.GetComponent<Testbullet>().FXcolor = bulletColor;
+
                 Ammo--;
-                //later een keer UI manager maken ofzo?
                 EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);
             }
             shootTimer = fireRate;

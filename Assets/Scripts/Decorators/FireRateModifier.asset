@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33d94c8a509a7248aa6a12b9bd1e6e7, type: 3}
   m_Name: FireRateModifier
   m_EditorClassIdentifier: 
-  FireRatemultiplier: 0.5
+  FireRatemultiplier: 0.4
