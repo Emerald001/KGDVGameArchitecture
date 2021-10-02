@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3675177421104544369}
   - component: {fileID: 483126717218038641}
   - component: {fileID: -996019133148949311}
-  - component: {fileID: 1970246977510305958}
   m_Layer: 7
   m_Name: 2DBulletPrefab
   m_TagString: Untagged
@@ -4920,17 +4919,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionFx: {fileID: 5136364784992689340, guid: a2599674d0810324d91d533089525a2e, type: 3}
   explosionColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &1970246977510305958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7563442456281526792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe3682e75cf14f40a9de1ae23b292dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionSpawner: {fileID: 0}
-  FXcolor: {r: 0, g: 0, b: 0, a: 0}

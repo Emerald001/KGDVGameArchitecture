@@ -26,13 +26,13 @@ public class EnemyAI : MonoBehaviour
 
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if(distance > 2)
+        if (distance > 2)
         {
             MoveCharacter(movement);
         }
     }
 
-   
+
     void MoveCharacter(Vector2 _direction)
     {
         rb.MovePosition((Vector2)transform.position + (_direction * moveSpeedEnemy * Time.deltaTime));

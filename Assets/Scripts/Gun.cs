@@ -18,6 +18,7 @@ public class Gun
     public Color bulletColor;
     public List<GunModifier> gunModifiers;
 
+    public BulletManager bulletManager;
     private ObjectPooler bulletPooler;
     private bool waitingForNextShot = false;
     private float shootTimer;
@@ -27,6 +28,8 @@ public class Gun
     {
         gunBarrel = _gunBarrel;
         gunModifiers = _gunModifiers;
+        bulletManager = new BulletManager();
+        bulletManager.OnStart();
 
         Ammo = magSize;
         EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
@@ -43,6 +46,8 @@ public class Gun
     public void OnUpdate()
     {
         shootTimer -= Time.deltaTime;
+        bulletManager.OnUpdate();
+
 
         if (autoFire)
         {
@@ -93,13 +98,17 @@ public class Gun
                 //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
 
                 //add bullet damage to bullet here?
+                Bullet bulletScript = new Bullet(bulletManager);
+                bulletScript.bulletObject = bullet;
+                bulletManager.bullets.Add(bulletScript);
+                
                 bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * shootPower, ForceMode2D.Impulse);
                 bullet.transform.localScale = bulletSize;
                 bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
                 bullet.GetComponent<ParticleSystem>().startColor = bulletColor;
 
                 //deze refactoren!
-                bullet.GetComponent<Testbullet>().FXcolor = bulletColor;
+               // bullet.GetComponent<Testbullet>().FXcolor = bulletColor;
 
                 Ammo--;
                 EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);

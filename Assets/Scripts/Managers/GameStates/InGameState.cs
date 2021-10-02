@@ -11,7 +11,7 @@ public class InGameState : GameState
     public ObjectPooler bulletPooler;
 
     public UImanager uiManager;
-    
+
     private GameObject bullet;
     private int bulletCount;
 
@@ -76,7 +76,6 @@ public class InGameState : GameState
     public override void OnUpdate()
     {
         player.OnUpdate();
-
         base.OnUpdate();
     }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MultiShotModifier
   m_EditorClassIdentifier: 
   extraBulletAmount: 3
-  spread: 15
+  spread: 30
