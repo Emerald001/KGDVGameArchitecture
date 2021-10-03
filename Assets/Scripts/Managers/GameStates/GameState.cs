@@ -8,15 +8,9 @@ public class GameState : State<GameManager>
 
     public GameState(StateMachine<GameManager> _stateMachine) : base(_stateMachine) { }
 
-    public override void OnEnter()
-    {
-        
-    }
+    public override void OnEnter() { }
 
-    public override void OnExit()
-    {
-        
-    }
+    public override void OnExit() { }
 
     public override void OnUpdate()
     {
@@ -30,8 +24,5 @@ public class GameState : State<GameManager>
         }
     }
 
-    public override void OnFixedUpdate()
-    {
-
-    }
+    public override void OnFixedUpdate() { }
 }

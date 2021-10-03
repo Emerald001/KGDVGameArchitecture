@@ -1,7 +1,7 @@
 using UnityEngine;
 using Interfaces;
 
-public class PlayerMovement : IPhysicsComponent
+public class PlayerMovement
 {
     private GameObject player;
     private Rigidbody2D rb;

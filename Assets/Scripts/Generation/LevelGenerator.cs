@@ -19,16 +19,13 @@ public class LevelGenerator
     }
 
     private Vector2Int size;
-
     private GridType[,] grid;
     private List<Walker> walkers = new List<Walker>();
 
+    private int maxWalkers = 10;
     private float walkerDirectionChangeChance = 0.45f;
     private float walkerSpawnChance = 0.05f;
     private float walkerDestroyChance = 0.05f;
-
-    private int maxWalkers = 10;
-
     private float fillPercent = 0.2f;
 
     public Vector3 spawnPoint { get; private set; }

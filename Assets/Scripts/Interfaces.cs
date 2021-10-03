@@ -8,10 +8,11 @@ namespace Interfaces
     {
         void TakeDamage(int _damage);
     }
-
-    public interface IPhysicsComponent 
+    
+    public interface IPoolable
     {
-
+        void OnFixedUpdate();
+        void OnEnableObject();
+        void OnDisableObject();
     }
-
 }

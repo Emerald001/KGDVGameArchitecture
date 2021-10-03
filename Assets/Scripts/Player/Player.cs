@@ -3,20 +3,18 @@ using UnityEngine;
 
 public class Player
 {
-    public InGameState owner;
+    private InGameState owner;
 
     public GameObject currentPlayer;
-    public GameObject currentGun;
+    private GameObject currentGun;
 
-    public Gun gun;
-    public GameObject gunBarrel;
-    public List<GunModifier> gunModifiers;
+    private Gun gun;
+    private List<GunModifier> gunModifiers;
 
     private Camera playerCam;
     private PlayerMovement playerMovement;
     private Vector3 spawnpoint;
 
-    //player Settings
     private float speed;
 
     public Player(InGameState _owner, Camera _playerCam, List<GunModifier> _gunModifiers, Vector3 _spawnPoint, float _speed)
@@ -37,8 +35,7 @@ public class Player
         playerMovement = new PlayerMovement(currentPlayer, playerCam, speed);
         playerMovement.OnEnter();
 
-        //gunBarrel = player.currentGun;
-        gun = new Gun(currentGun, gunModifiers, owner.bulletPooler);
+        gun = new Gun(owner, currentGun, gunModifiers);
     }
 
     public void OnUpdate() 
@@ -54,7 +51,6 @@ public class Player
     public void OnFixedUpdate() 
     {
         playerMovement.OnFixedUpdate();
-        gun.OnFixedUpdate();
     }
 
     public void OnExit()

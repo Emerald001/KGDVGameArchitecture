@@ -62,9 +62,6 @@ public class GameManager : MonoBehaviour
             playerCam,
             playerSpeed,
 
-            bullet,
-            bulletCount,
-
             gunModifiers,
 
             size,

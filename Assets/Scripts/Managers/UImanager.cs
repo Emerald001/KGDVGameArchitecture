@@ -20,5 +20,4 @@ public class UImanager
     {
         ammoText.text = "AMMO " + _newAmmoCount + "/" + _maxAmmo;
     }
-
 }

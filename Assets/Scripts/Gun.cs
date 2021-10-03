@@ -6,54 +6,47 @@ public class Gun
 {
     //stuff is Public because of Decorator access
     public GameObject bulletPrefab;
+    public GameObject gunBarrel;
+    private InGameState owner;
+
     public int damage;
+    public int magSize = 6;
+
     public float fireRate = 0.4f;
     public float shootPower = 4f;
-    public int magSize = 6;
     public float reloadTime = 1f;
+
     public bool isReloading;
-    public GameObject gunBarrel;
     public bool autoFire;
     public bool isExplosive;
-    public Vector3 bulletSize = new Vector3(0.3f, 0.3f, 0.3f);
+
     public Color bulletColor;
+    public Vector3 bulletSize = new Vector3(0.3f, 0.3f, 0.3f);
     public List<GunModifier> gunModifiers;
 
-    public BulletManager bulletManager;
-    private ObjectPooler bulletPooler;
     private bool waitingForNextShot = false;
     private float shootTimer;
     private int Ammo = 6;
 
-    public Gun(GameObject _gunBarrel, List<GunModifier> _gunModifiers, ObjectPooler _bulletPool)
+    public Gun(InGameState _owner, GameObject _gunBarrel, List<GunModifier> _gunModifiers)
     {
+        this.owner = _owner;
         gunBarrel = _gunBarrel;
         gunModifiers = _gunModifiers;
-        bulletManager = new BulletManager();
-        bulletManager.OnStart();
 
         Ammo = magSize;
         EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
 
         for (int i = 0; i < gunModifiers.Count; i++)
         {
-            //gunModifiers[i] = GameManager.Instance.gunModifiers[i];
             gunModifiers[i].tempGun = this;
             gunModifiers[i].OnGunStart();
         }
-        //EventManager.Subscribe(EventType.GUN_SHOOT, Shoot);
-    }
-
-    public void OnFixedUpdate()
-    {
-        bulletManager.OnFixedUpdate();
-
     }
 
     public void OnUpdate()
     {
         shootTimer -= Time.deltaTime;
-
 
         if (autoFire)
         {
@@ -78,11 +71,8 @@ public class Gun
 
     public virtual void Reload()
     {
-        //do reloading stuff
-       // yield return new WaitForSeconds(reloadTime);
         Ammo = magSize;
         EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
-
     }
 
     public virtual void Shoot()
@@ -95,29 +85,25 @@ public class Gun
                 EventManager.Invoke(EventType.GUN_SHOOT);
 
                 foreach (GunModifier b in gunModifiers)
-
                 {
                     b.OnGunShoot();
                 }
-                //shoot bullet
-                GameObject bullet = GameObject.Instantiate(bulletPrefab = Resources.Load("2DBulletPrefab") as GameObject, gunBarrel.transform.position,Quaternion.Euler(new Vector3(0,0, gunBarrel.transform.rotation.eulerAngles.z - 90) ));
-                //GameObject bullet = bulletPooler.SpawnFromPool("Bullet", gunBarrel.transform.position, gunBarrel.transform.rotation);
 
-                //add bullet damage to bullet here?
-                Bullet bulletScript = new Bullet(bulletManager, bulletColor, isExplosive);
-                bulletScript.bulletObject = bullet;
-                bulletManager.bullets.Add(bulletScript);
-                
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * shootPower, ForceMode2D.Impulse);
-                bullet.transform.localScale = bulletSize;
-                bullet.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
-                bullet.GetComponent<ParticleSystem>().startColor = bulletColor;
+                Bullet bulletScript = owner.bulletPool.RequestObject();
+                bulletScript.SpawnBullet(gunBarrel.transform);
+                bulletScript.owner = owner;
 
-                //deze refactoren!
-               // bullet.GetComponent<Testbullet>().FXcolor = bulletColor;
+                bulletScript.bulletObject.GetComponent<Rigidbody2D>().AddForce(bulletScript.bulletObject.transform.up * shootPower, ForceMode2D.Impulse);
+                bulletScript.bulletObject.transform.localScale = bulletSize;
+                bulletScript.bulletObject.GetComponent<Renderer>().material.SetColor("_Emissive", bulletColor);
+                bulletScript.bulletObject.GetComponent<ParticleSystem>().startColor = bulletColor;
 
                 Ammo--;
                 EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);
+            }
+            else
+            {
+                Reload();
             }
             shootTimer = fireRate;
         }

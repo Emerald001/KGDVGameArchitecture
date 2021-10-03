@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Interfaces;
 
 public class ObjectPool<T> where T : IPoolable
 {
@@ -24,7 +25,6 @@ public class ObjectPool<T> where T : IPoolable
     public T ActivateItem(T _item)
     {
         _item.OnEnableObject();
-        _item.Active = true;
         if (inactivePool.Contains(_item))
         {
             inactivePool.Remove(_item);
@@ -40,7 +40,6 @@ public class ObjectPool<T> where T : IPoolable
             activePool.Remove(_item);
         }
         _item.OnDisableObject();
-        _item.Active = false;
         inactivePool.Add(_item);
     }
 
@@ -50,11 +49,12 @@ public class ObjectPool<T> where T : IPoolable
         inactivePool.Add(instance);
         return instance;
     }
-}
 
-public interface IPoolable
-{
-    bool Active { get; set; }
-    void OnEnableObject();
-    void OnDisableObject();
+    public void RunFixedUpdate()
+    {
+        for (int i = 0; i < activePool.Count; i++)
+        {
+            activePool[i].OnFixedUpdate();
+        }
+    }
 }

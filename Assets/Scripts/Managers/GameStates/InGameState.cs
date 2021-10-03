@@ -8,14 +8,12 @@ public class InGameState : GameState
     private Player player;
     private LevelGenerator levelGenerator;
 
-    public ObjectPooler bulletPooler;
+    public ObjectPool<Bullet> bulletPool;
+    public ObjectPool<EnemyAI> enemypool;
+    private List<Vector3> enemySpawnPoints;
 
     public UImanager uiManager;
 
-    private GameObject bullet;
-    private int bulletCount;
-
-    public EnemyManager enemyManager;
     public int enemyAmount = 20;
 
     public List<GunModifier> gunModifiers;
@@ -35,9 +33,6 @@ public class InGameState : GameState
         Camera _playerCam,
         float _playerSpeed,
 
-        GameObject _bullet,
-        int _bulletCount,
-
         List<GunModifier> _gunModifiers,
 
         Vector2Int _size,
@@ -48,9 +43,6 @@ public class InGameState : GameState
     {
         this.playerCam = _playerCam;
         this.playerSpeed = _playerSpeed;
-
-        this.bullet = _bullet;
-        this.bulletCount = _bulletCount;
 
         this.gunModifiers = _gunModifiers;
 
@@ -67,8 +59,7 @@ public class InGameState : GameState
         uiManager = new UImanager(tmpCanvas.GetComponentInChildren<Text>());
         uiManager.OnEnter();
 
-        bulletPooler = new ObjectPooler("Bullet", bullet, bulletCount);
-        bulletPooler.OnStart();
+        bulletPool = new ObjectPool<Bullet>();
 
         levelGenerator = new LevelGenerator(size);
         levelGenerator.OnEnter();
@@ -77,7 +68,14 @@ public class InGameState : GameState
         player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
-        enemyManager = new EnemyManager(player.currentPlayer.transform, levelGenerator.GetRandomFloorPositions(enemyAmount));
+        enemypool = new ObjectPool<EnemyAI>();
+        enemySpawnPoints = levelGenerator.GetRandomFloorPositions(enemyAmount);
+
+        for (var i = 0; i < enemySpawnPoints.Count; i++)
+        {
+            var enemyObject = enemypool.RequestObject();
+            enemyObject.OnStart(enemySpawnPoints[i], player.currentPlayer.transform, this);
+        }
     }
 
     public override void OnUpdate()
@@ -85,7 +83,6 @@ public class InGameState : GameState
         if (!paused)
         {
             player.OnUpdate();
-            enemyManager.OnUpdate();
             base.OnUpdate();
         }
 
@@ -100,6 +97,8 @@ public class InGameState : GameState
         if (!paused)
         {
             player.OnFixedUpdate();
+            bulletPool.RunFixedUpdate();
+            enemypool.RunFixedUpdate();
         }
     }
 

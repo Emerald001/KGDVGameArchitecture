@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MenuState : GameState
 {
-    public Canvas canvasInstance;
     public GameObject tmpCanvas;
     public string key;
 

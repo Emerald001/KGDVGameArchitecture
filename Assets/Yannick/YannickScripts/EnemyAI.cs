@@ -2,33 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : Interfaces.IDamagable
+public class EnemyAI : Interfaces.IPoolable
 {
-    public Transform player;
-    public EnemyManager enemyManager;
-    int enemyHealth = 20;
     public GameObject enemyObject;
-    public float moveSpeedEnemy = 5f;
+    private InGameState owner;
+    private Transform player;
     private Rigidbody2D rb;
+
+    private int enemyHealth = 20;
+    private float moveSpeedEnemy = 5f;
     private Vector2 movement;
 
-    public EnemyAI(Transform _playerTransform, EnemyManager _enemyManager)
+    public void OnStart(Vector3 _spawnpoint, Transform _playerTransform, InGameState _owner)
     {
-        enemyManager = _enemyManager;
+        enemyObject = Object.Instantiate(Resources.Load("EnemyPrefab") as GameObject, _spawnpoint, Quaternion.identity);
         player = _playerTransform;
-    }
+        owner = _owner;
 
-    public void OnStart()
-    {
         rb = enemyObject.GetComponent<Rigidbody2D>();
         EventManager<GameObject, int>.Subscribe(EventType.ENEMY_HIT, CheckDamager);
     }
 
+    public void OnEnableObject()
+    {
 
-    // Start is called before the first frame update
+    }
 
-    // Update is called once per frame
-    public void OnUpdate()
+    public void OnDisableObject()
+    {
+        GameObject.Destroy(enemyObject);
+        player = null;
+    }
+
+    public void OnFixedUpdate()
     {
         Vector2 direction = player.position - enemyObject.transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -57,11 +63,10 @@ public class EnemyAI : Interfaces.IDamagable
         enemyHealth -= _damage;
         if (enemyHealth <= 0)
         {
-            enemyManager.enemies.Remove(this);
+            owner.enemypool.ReturnObjectToPool(this);
             Object.Destroy(enemyObject);
         }
     }
-
 
     void MoveCharacter(Vector2 _direction)
     {
