@@ -43,7 +43,7 @@ public class LevelGenerator
         CreateWalls();
         RemoveIsolatedWalls();
 
-        spawnPoint = Vector2.one * 0.5f;
+        spawnPoint = Vector2.zero;
         exitPoint = CalculateExitPosition();
     }
 

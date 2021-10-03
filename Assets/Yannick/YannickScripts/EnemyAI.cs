@@ -20,7 +20,7 @@ public class EnemyAI : Interfaces.IPoolable
         owner = _owner;
 
         rb = enemyObject.GetComponent<Rigidbody2D>();
-        EventManager<GameObject, int>.Subscribe(EventType.ENEMY_HIT, CheckDamager);
+        EventManager<GameObject, int>.Subscribe(EventType.enemyHit, CheckDamager);
     }
 
     public void OnEnableObject()
@@ -63,7 +63,7 @@ public class EnemyAI : Interfaces.IPoolable
         enemyHealth -= _damage;
         if (enemyHealth <= 0)
         {
-            owner.enemypool.ReturnObjectToPool(this);
+            owner.enemyPool.ReturnObjectToPool(this);
             Object.Destroy(enemyObject);
         }
     }

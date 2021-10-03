@@ -13,7 +13,7 @@ public class UImanager
 
     public void OnEnter()
     {
-        EventManager<int,int>.Subscribe(EventType.AMMO_CHANGED,ChangeAmmoText);
+        EventManager<int,int>.Subscribe(EventType.ammoChanged,ChangeAmmoText);
     }
 
     private void ChangeAmmoText(int _newAmmoCount, int _maxAmmo)

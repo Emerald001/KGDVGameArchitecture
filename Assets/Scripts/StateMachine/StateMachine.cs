@@ -6,26 +6,22 @@ public class StateMachine<T>
     private State<T> currentState;
     private Dictionary<System.Type, State<T>> stateDictionary = new Dictionary<System.Type, State<T>>();
 
-    public T Controller { get; protected set; }
+    public T controller { get; private set; }
 
     public StateMachine(T _owner)
     {
-        Controller = _owner;
+        controller = _owner;
     }
 
     public void SwitchState(System.Type _switcher)
     {
-        if (currentState != null)
-        {
-            currentState.OnExit();
-        }
+        currentState?.OnExit();
 
         if (stateDictionary.ContainsKey(_switcher))
         {
             var tmpState = stateDictionary[_switcher];
             tmpState.OnEnter();
             currentState = tmpState;
-            return;
         }
     }
 

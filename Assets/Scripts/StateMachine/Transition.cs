@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Transition<T>
 {
     public Transition(System.Predicate<T> _condition, System.Type _toState)

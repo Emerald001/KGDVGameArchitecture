@@ -9,19 +9,19 @@ public class InGameState : GameState
     private LevelGenerator levelGenerator;
 
     public ObjectPool<Bullet> bulletPool;
-    public ObjectPool<EnemyAI> enemypool;
+    public ObjectPool<EnemyAI> enemyPool;
     private List<Vector3> enemySpawnPoints;
 
-    public UImanager uiManager;
+    private UImanager uiManager;
 
-    public int enemyAmount = 20;
+    private int enemyAmount = 20;
 
-    public List<GunModifier> gunModifiers;
+    private List<GunModifier> gunModifiers;
 
-    public Camera playerCam;
-    public float playerSpeed;
+    private Camera playerCam;
+    private float playerSpeed;
 
-    public Vector2Int size;
+    private Vector2Int size;
     private Tilemap tilemap;
     private Tile ground;
     private Tile wall;
@@ -68,13 +68,13 @@ public class InGameState : GameState
         player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
-        enemypool = new ObjectPool<EnemyAI>();
+        enemyPool = new ObjectPool<EnemyAI>();
         enemySpawnPoints = levelGenerator.GetRandomFloorPositions(enemyAmount);
 
-        for (var i = 0; i < enemySpawnPoints.Count; i++)
+        foreach (var spawnPoint in enemySpawnPoints)
         {
-            var enemyObject = enemypool.RequestObject();
-            enemyObject.OnStart(enemySpawnPoints[i], player.currentPlayer.transform, this);
+            var enemyObject = enemyPool.RequestObject();
+            enemyObject.OnStart(spawnPoint, player.currentPlayer.transform, this);
         }
     }
 
@@ -94,12 +94,11 @@ public class InGameState : GameState
 
     public override void OnFixedUpdate()
     {
-        if (!paused)
-        {
-            player.OnFixedUpdate();
-            bulletPool.RunFixedUpdate();
-            enemypool.RunFixedUpdate();
-        }
+        if (paused) return;
+        
+        player.OnFixedUpdate();
+        bulletPool.RunFixedUpdate();
+        enemyPool.RunFixedUpdate();
     }
 
     public override void OnExit()

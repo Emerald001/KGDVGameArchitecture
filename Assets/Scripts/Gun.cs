@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +21,7 @@ public class Gun
 
     public Color bulletColor;
     public Vector3 bulletSize = new Vector3(0.3f, 0.3f, 0.3f);
-    public List<GunModifier> gunModifiers;
+    private List<GunModifier> gunModifiers;
 
     private bool waitingForNextShot = false;
     private float shootTimer;
@@ -35,12 +34,12 @@ public class Gun
         gunModifiers = _gunModifiers;
 
         Ammo = magSize;
-        EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
+        EventManager<int, int>.Invoke(EventType.ammoChanged, Ammo, magSize);
 
-        for (int i = 0; i < gunModifiers.Count; i++)
+        foreach (var modifier in gunModifiers)
         {
-            gunModifiers[i].tempGun = this;
-            gunModifiers[i].OnGunStart();
+            modifier.tempGun = this;
+            modifier.OnGunStart();
         }
     }
 
@@ -69,27 +68,27 @@ public class Gun
         }
     }
 
-    public virtual void Reload()
+    protected virtual void Reload()
     {
         Ammo = magSize;
-        EventManager<int, int>.Invoke(EventType.AMMO_CHANGED, Ammo, magSize);
+        EventManager<int, int>.Invoke(EventType.ammoChanged, Ammo, magSize);
     }
 
-    public virtual void Shoot()
+    protected virtual void Shoot()
     {
         if (shootTimer <= 0)
         {
             waitingForNextShot = true;
             if (Ammo > 0)
             {
-                EventManager.Invoke(EventType.GUN_SHOOT);
+                EventManager.Invoke(EventType.gunShoot);
 
-                foreach (GunModifier b in gunModifiers)
+                foreach (var b in gunModifiers)
                 {
                     b.OnGunShoot();
                 }
 
-                Bullet bulletScript = owner.bulletPool.RequestObject();
+                var bulletScript = owner.bulletPool.RequestObject();
                 bulletScript.SpawnBullet(gunBarrel.transform);
                 bulletScript.owner = owner;
 
@@ -99,7 +98,7 @@ public class Gun
                 bulletScript.bulletObject.GetComponent<ParticleSystem>().startColor = bulletColor;
 
                 Ammo--;
-                EventManager<int,int>.Invoke(EventType.AMMO_CHANGED, Ammo,magSize);
+                EventManager<int,int>.Invoke(EventType.ammoChanged, Ammo,magSize);
             }
             else
             {

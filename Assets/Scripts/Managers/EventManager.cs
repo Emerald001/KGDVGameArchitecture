@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public enum EventType
 {
-    GAME_OVER,
-    PLAYER_HIT,
-    GUN_SHOOT,
-    ENEMY_HIT,
-    BULLET_HIT,
-    HEALTH_CHANGED,
-    AMMO_CHANGED,
+    gameOver,
+    playerHit,
+    gunShoot,
+    enemyHit,
+    bulletHit,
+    healthChanged,
+    ammoChanged,
 
 }
 
@@ -34,7 +32,7 @@ public static class EventManager
     {
         if (eventDictionary.ContainsKey(_eventType))
         {
-            System.Action result = eventDictionary[_eventType];
+            var result = eventDictionary[_eventType];
             if (result != null)
             {
                 result -= _listener;
@@ -69,7 +67,7 @@ public static class EventManager<T>
     {
         if (eventDictionary.ContainsKey(_eventType))
         {
-            System.Action<T> result = eventDictionary[_eventType];
+            var result = eventDictionary[_eventType];
             if (result != null)
             {
                 result -= _listener;
@@ -103,7 +101,7 @@ public static class EventManager<T,K>
     {
         if (eventDictionary.ContainsKey(_eventType))
         {
-            System.Action<T,K> result = eventDictionary[_eventType];
+            var result = eventDictionary[_eventType];
             if (result != null)
             {
                 result -= _listener;

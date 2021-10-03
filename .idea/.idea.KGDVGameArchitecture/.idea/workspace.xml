@@ -4,7 +4,26 @@
     <list default="true" id="96a7a43d-65e1-4d36-b7c2-e95a7f93e497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KGDVGameArchitecture/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene_Profiles/Post-process Volume Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene_Profiles/Post-process Volume Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/EventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EventManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/GameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/GameState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/MenuState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/MenuState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UImanager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UImanager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/CameraFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/CameraFollow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Transition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Transition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Yannick/YannickScripts/Cube.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Yannick/YannickScripts/Cube.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Yannick/YannickScripts/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Yannick/YannickScripts/EnemyAI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +60,22 @@
       <option value="$PROJECT_DIR$/Assets/Scipts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scipts/Generation/LevelGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/InGameState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/GameState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/State.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameStates/MenuState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/EventManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/CameraFollow.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PLayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/Transition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Gun.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
+      <option value="$PROJECT_DIR$/Assets/Yannick/YannickScripts/Cube.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiYxzf4lLdbSW5g7OgP6sBw5pE" />

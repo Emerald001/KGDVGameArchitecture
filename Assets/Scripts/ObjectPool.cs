@@ -15,14 +15,10 @@ public class ObjectPool<T> where T : IPoolable
 
     public T RequestObject()
     {
-        if (inactivePool.Count > 0)
-        {
-            return ActivateItem(inactivePool[0]);
-        }
-        return ActivateItem(AddNewItemToPool());
+        return ActivateItem(inactivePool.Count > 0 ? inactivePool[0] : AddNewItemToPool());
     }
 
-    public T ActivateItem(T _item)
+    private T ActivateItem(T _item)
     {
         _item.OnEnableObject();
         if (inactivePool.Contains(_item))
@@ -45,16 +41,16 @@ public class ObjectPool<T> where T : IPoolable
 
     private T AddNewItemToPool()
     {
-        T instance = (T)Activator.CreateInstance(typeof(T));
+        var instance = (T)Activator.CreateInstance(typeof(T));
         inactivePool.Add(instance);
         return instance;
     }
 
     public void RunFixedUpdate()
     {
-        for (int i = 0; i < activePool.Count; i++)
+        foreach (var t in activePool)
         {
-            activePool[i].OnFixedUpdate();
+            t.OnFixedUpdate();
         }
     }
 }

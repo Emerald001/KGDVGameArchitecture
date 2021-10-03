@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuState : GameState
 {
-    public GameObject tmpCanvas;
-    public string key;
+    private GameObject tmpCanvas;
+    private string key;
 
     public MenuState(StateMachine<GameManager> _stateMachine, string _key) : base(_stateMachine) {
         this.key = _key;
@@ -14,14 +12,15 @@ public class MenuState : GameState
 
     public override void OnEnter()
     {
-        tmpCanvas = GameObject.Instantiate(Resources.Load("MenuCanvas") as GameObject);
-        Text text = tmpCanvas.GetComponentInChildren<Text>();
+        tmpCanvas = Object.Instantiate(Resources.Load("MenuCanvas") as GameObject);
+        var text = tmpCanvas.GetComponentInChildren<Text>();
         text.text = "Press " + key + " to start";
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
     }
+    
     public override void OnFixedUpdate()
     {
 

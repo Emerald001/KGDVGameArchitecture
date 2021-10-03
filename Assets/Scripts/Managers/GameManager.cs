@@ -1,32 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //The only one with MonoBehaviour
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-
     [Header("MenuSettings")]
     public KeyCode keyToStart = KeyCode.E;
 
@@ -54,10 +31,10 @@ public class GameManager : MonoBehaviour
     {
         stateMachine = new StateMachine<GameManager>(this);
 
-        MenuState menuState = new MenuState(stateMachine, keyToStart.ToString());
+        var menuState = new MenuState(stateMachine, keyToStart.ToString());
         stateMachine.AddState(typeof(MenuState), menuState); 
         
-        InGameState inGameState = new InGameState(
+        var inGameState = new InGameState(
             stateMachine,
             playerCam,
             playerSpeed,
@@ -92,13 +69,12 @@ public class GameManager : MonoBehaviour
         stateMachine.RunFixedUpdate();
     }
 
-    public void AddTransitionWithKey(State<GameManager> _state, KeyCode _keyCode, System.Type _stateTo)
+    private void AddTransitionWithKey(State<GameManager> _state, KeyCode _keyCode, System.Type _stateTo)
     {
         _state.AddTransition(new Transition<GameManager>(
-            (_x) => {
-                if (Input.GetKeyDown(_keyCode))
-                    return true;
-                return false;
+            (_x) =>
+            {
+                return Input.GetKeyDown(_keyCode);
             }, _stateTo));
     }
 }

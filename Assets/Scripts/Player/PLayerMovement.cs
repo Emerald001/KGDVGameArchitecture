@@ -11,7 +11,7 @@ public class PlayerMovement
 
     private Vector3 velocity;
 
-    public float speed;
+    private float speed;
 
     public PlayerMovement(GameObject _newPlayer, Camera _playerCam, float _speed)
     {
