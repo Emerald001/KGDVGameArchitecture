@@ -4,9 +4,9 @@ using UnityEngine;
 public class EnemyManager
 {
     public List<EnemyAI> enemies;
-    public Transform playerTransform;
+    private Transform playerTransform;
     // moet casper ff aanpassen/gebruiken
-    public List<Vector3> enemySpawnPoints;
+    private List<Vector3> enemySpawnPoints;
     public EnemyManager(Transform _playerTransform, List<Vector3> _spawnPoints)
     {
         playerTransform = _playerTransform;
