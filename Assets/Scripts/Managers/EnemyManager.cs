@@ -5,35 +5,32 @@ public class EnemyManager
 {
     public List<EnemyAI> enemies;
     public Transform playerTransform;
-    public int enemyAmount = 20;
     // moet casper ff aanpassen/gebruiken
-    public Vector3[] enemySpawnPoints;
-    public EnemyManager(Transform _playerTransform)
+    public List<Vector3> enemySpawnPoints;
+    public EnemyManager(Transform _playerTransform, List<Vector3> _spawnPoints)
     {
         playerTransform = _playerTransform;
         enemies = new List<EnemyAI>();
-        enemySpawnPoints = new Vector3[1];
+        enemySpawnPoints = _spawnPoints;
 
-        enemySpawnPoints[0] = new Vector3(0, 0, 0);
-
-        SpawnEnemies(enemyAmount);
+        SpawnEnemies();
     }
 
-    public void SpawnEnemies(int _spawnAmount)
+    private void SpawnEnemies()
     {
-        for (int i = 0; i < _spawnAmount; i++)
+        for (var i = 0; i < enemySpawnPoints.Count; i++)
         {
-            enemies.Add(new EnemyAI(playerTransform, this));                                     //hier een randomizer plaatsen ofzo V
-            enemies[i].enemyObject = Object.Instantiate(Resources.Load("EnemyPrefab") as GameObject,enemySpawnPoints[0] , Quaternion.identity );
+            enemies.Add(new EnemyAI(playerTransform, this));
+            enemies[i].enemyObject = Object.Instantiate(Resources.Load("EnemyPrefab") as GameObject, enemySpawnPoints[i] , Quaternion.identity );
             enemies[i].OnStart();
         }
     }
 
     public void OnUpdate()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        foreach (var enemy in enemies)
         {
-            enemies[i].OnUpdate();
+            enemy.OnUpdate();
         }
     }
 }

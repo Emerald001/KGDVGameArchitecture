@@ -32,8 +32,8 @@ public class LevelGenerator
     private float fillPercent = 0.2f;
 
     public Vector3 spawnPoint { get; private set; }
-
     public Vector3 exitPoint { get; private set; }
+    
     public LevelGenerator(Vector2Int _size)
     {
         size = _size;
@@ -257,5 +257,33 @@ public class LevelGenerator
         }
 
         return floors[Random.Range(0, floors.Count)];
+    }
+    
+    public List<Vector3> GetRandomFloorPositions(int _amount)
+    {
+        var floors = new List<Vector3>();
+        
+        for (var x = 0; x < size.x; x++)
+        {
+            for (var y = 0; y < size.y; y++)
+            {
+                if (grid[x, y] != GridType.Floor) continue;
+
+                var pos = new Vector3(-size.x * 0.5f + x + 0.5f, -size.y * 0.5f + y + 0.5f, 0);
+
+                floors.Add(pos);
+            }
+        }
+
+        if (floors.Count <= _amount) return floors;
+        
+        var countToRemove = floors.Count - _amount;
+            
+        for (var i = 0; i < countToRemove; i++)
+        {
+            floors.RemoveAt(Random.Range(0, floors.Count));
+        }
+        
+        return floors;
     }
 }

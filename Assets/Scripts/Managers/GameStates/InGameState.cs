@@ -16,6 +16,7 @@ public class InGameState : GameState
     private int bulletCount;
 
     public EnemyManager enemyManager;
+    public int enemyAmount = 20;
 
     public List<GunModifier> gunModifiers;
 
@@ -76,7 +77,7 @@ public class InGameState : GameState
         player = new Player(this, playerCam, gunModifiers, levelGenerator.spawnPoint, playerSpeed);
         player.OnEnter();
 
-        enemyManager = new EnemyManager(player.currentPlayer.transform);
+        enemyManager = new EnemyManager(player.currentPlayer.transform, levelGenerator.GetRandomFloorPositions(enemyAmount));
     }
 
     public override void OnUpdate()
