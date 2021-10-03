@@ -48,8 +48,9 @@ public class ObjectPool<T> where T : IPoolable
 
     public void RunFixedUpdate()
     {
-        foreach (var t in activePool)
+        for (var i = 0; i < activePool.Count; i++)
         {
+            var t = activePool[i];
             t.OnFixedUpdate();
         }
     }
